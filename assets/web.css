@@ -186,6 +186,7 @@ code { font: .88em var(--mono); background: var(--kod-bg); padding: .12em .38em;
 
 .okno { margin: 0; border: 1px solid var(--linka); border-radius: 14px; overflow: hidden; background: var(--plocha); box-shadow: var(--stin); }
 .okno img { width: 100%; }
+.okno:not(:has(img)) { display: none; } /* sestavení bez snímků obrazovek */
 
 /* --- pásy ---------------------------------------------------------------------------------------------------------- */
 
