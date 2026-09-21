@@ -3,8 +3,8 @@
  * Malý převodník Markdownu pro příručku phpRS.
  *
  * Umí jen to, co příručka používá: nadpisy, odstavce, seznamy (i vnořené a s bloky uvnitř položky),
- * tabulky, citace (vykreslené jako poznámka), bloky kódu a řádkové formátování. Žádné HTML ve zdroji –
- * všechno se escapuje.
+ * tabulky (zarovnání sloupců, svislítko v buňce jako \|), citace (vykreslené jako poznámka), bloky kódu
+ * a řádkové formátování. Žádné HTML ve zdroji – všechno se escapuje.
  */
 
 declare(strict_types=1);
@@ -19,7 +19,7 @@ final class Markdown
     /** @var list<array{nadpis:string,id:string,text:string}> text po oddílech pro hledání */
     public array $oddily = [];
 
-    /** @var array<string,int> */
+    /** @var array<string,true> id nadpisů, která už stránka obsahuje */
     private array $pouzitaId = [];
 
     /** @param \Closure(string):string $odkaz přepis cílů odkazů (relativní .md -> adresa na webu) */
@@ -57,7 +57,7 @@ final class Markdown
                 continue;
             }
             // nadpis
-            if (preg_match('/^(#{1,6})\s+(.+?)\s*#*$/', $radek, $m)) {
+            if (preg_match('/^(#{1,6})\s+(.+?)(?:\s+#+)?\s*$/', $radek, $m)) {
                 $i++;
                 $uroven = strlen($m[1]);
                 $cisty = trim(strip_tags($this->radkove($m[2])));
@@ -65,6 +65,8 @@ final class Markdown
                     $this->titulek = html_entity_decode($cisty, ENT_QUOTES);
                     continue;
                 }
+                // <h1> patří titulku stránky; další nadpis první úrovně by ho zdvojil
+                $uroven = max(2, $uroven);
                 $id = $this->id($cisty);
                 if ($vrchni && $uroven === 2) {
                     $this->nadpisy[] = ['id' => $id, 'text' => html_entity_decode($cisty, ENT_QUOTES)];
@@ -76,15 +78,23 @@ final class Markdown
             // tabulka
             if (str_starts_with(ltrim($radek), '|') && isset($radky[$i + 1]) && preg_match('/^\s*\|?\s*:?-{2,}/', $radky[$i + 1])) {
                 $hlavicka = $this->bunky($radek);
+                $sloupcu = count($hlavicka);
+                // zarovnání podle oddělovacího řádku (:--- vlevo, ---: vpravo, :---: na střed); třídou, vložené styly CSP nepovolí
+                $zarovnani = [];
+                foreach ($this->bunky($radky[$i + 1]) as $k => $cara) {
+                    $zarovnani[$k] = str_ends_with($cara, ':') ? (str_starts_with($cara, ':') ? ' class="nastred"' : ' class="vpravo"') : '';
+                }
                 $html .= '<div class="tabulka"><table><thead><tr>';
-                foreach ($hlavicka as $b) {
-                    $html .= '<th>' . $this->radkove($b) . '</th>';
+                foreach ($hlavicka as $k => $b) {
+                    $html .= '<th scope="col"' . ($zarovnani[$k] ?? '') . '>' . $this->radkove($b) . '</th>';
                 }
                 $html .= "</tr></thead><tbody>\n";
                 for ($i += 2; $i < $n && str_starts_with(ltrim($radky[$i]), '|'); $i++) {
                     $html .= '<tr>';
-                    foreach ($this->bunky($radky[$i]) as $b) {
-                        $html .= '<td>' . $this->radkove($b) . '</td>';
+                    // řádek má vždy tolik buněk jako hlavička: chybějící se doplní, přebytečné zahodí
+                    $bunky = array_slice(array_pad($this->bunky($radky[$i]), $sloupcu, ''), 0, $sloupcu);
+                    foreach ($bunky as $k => $b) {
+                        $html .= '<td' . ($zarovnani[$k] ?? '') . '>' . $this->radkove($b) . '</td>';
                         $this->doHledani($b);
                     }
                     $html .= "</tr>\n";
@@ -105,6 +115,7 @@ final class Markdown
             if (preg_match('/^([-*]|\d+\.)\s+/', $radek, $m)) {
                 $cislovany = ctype_digit($m[1][0]);
                 $vzor = $cislovany ? '/^\d+\.\s+/' : '/^[-*]\s+/';
+                $prvni = $cislovany ? (int) $m[1] : 1;
                 $polozky = [];
                 $volny = false;
                 while ($i < $n && preg_match($vzor, $radky[$i], $mm)) {
@@ -136,7 +147,7 @@ final class Markdown
                         $i = $j;
                     }
                 }
-                $html .= $cislovany ? "<ol>\n" : "<ul>\n";
+                $html .= $cislovany ? ($prvni === 1 ? "<ol>\n" : "<ol start=\"$prvni\">\n") : "<ul>\n";
                 foreach ($polozky as $polozka) {
                     $obsah = $this->bloky($polozka);
                     if (!$volny || !in_array('', $polozka, true)) {
@@ -169,8 +180,12 @@ final class Markdown
         $radek = trim($radek);
         $radek = trim($radek, '|');
 
-        return array_map('trim', preg_split('/(?<!\\\\)\|/', $radek) ?: []);
+        // \| je svislítko uvnitř buňky, ne hranice sloupce
+        return array_map(static fn (string $b): string => str_replace('\|', '|', trim($b)), preg_split('/(?<!\\\\)\|/', $radek) ?: []);
     }
+
+    /** Odkaz [text](cíl); cíl smí obsahovat jednu úroveň závorek, např. …/PHP_(jazyk). */
+    private const ODKAZ = '/\[([^\]]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)/';
 
     private function radkove(string $text): string
     {
@@ -181,7 +196,7 @@ final class Markdown
             return "\x02" . (count($kody) - 1) . "\x03";
         }, $text);
         $text = htmlspecialchars($text, ENT_NOQUOTES);
-        $text = (string) preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function (array $m): string {
+        $text = (string) preg_replace_callback(self::ODKAZ, function (array $m): string {
             $cil = ($this->odkaz)(html_entity_decode($m[2], ENT_QUOTES));
             $vnejsi = (bool) preg_match('#^https?:#', $cil);
 
@@ -197,7 +212,7 @@ final class Markdown
 
     private function doHledani(string $text): void
     {
-        $text = (string) preg_replace('/\[([^\]]+)\]\([^)]+\)/', '$1', $text);
+        $text = (string) preg_replace(self::ODKAZ, '$1', $text);
         $text = str_replace(['**', '`'], '', $text);
         $posledni = count($this->oddily) - 1;
         $this->oddily[$posledni]['text'] = trim($this->oddily[$posledni]['text'] . ' ' . $text);
@@ -211,9 +226,14 @@ final class Markdown
             'ó' => 'o', 'ô' => 'o', 'ö' => 'o', 'ř' => 'r', 'ŕ' => 'r', 'š' => 's', 'ť' => 't', 'ú' => 'u', 'ů' => 'u', 'ü' => 'u',
             'ý' => 'y', 'ž' => 'z', 'ß' => 'ss',
         ]);
-        $id = trim((string) preg_replace('/[^a-z0-9]+/', '-', $text), '-') ?: 'oddil';
-        $this->pouzitaId[$id] = ($this->pouzitaId[$id] ?? 0) + 1;
+        $zaklad = trim((string) preg_replace('/[^a-z0-9]+/', '-', $text), '-') ?: 'oddil';
+        // opakovaný nadpis dostane -2, -3…; přeskočí se i id, které už nese jiný nadpis (např. „Krok 2“)
+        $id = $zaklad;
+        for ($n = 2; isset($this->pouzitaId[$id]); $n++) {
+            $id = "$zaklad-$n";
+        }
+        $this->pouzitaId[$id] = true;
 
-        return $this->pouzitaId[$id] > 1 ? $id . '-' . $this->pouzitaId[$id] : $id;
+        return $id;
     }
 }

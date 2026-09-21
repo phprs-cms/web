@@ -21,7 +21,6 @@ return [
     'podpora_nadpis' => 'phpRS is free and has no ads',
     'podpora_text' => 'Development, security fixes and this documentation are paid for by voluntary contributions. Even a small regular amount helps.',
     'podpora_tlacitko' => 'Support on GitHub Sponsors',
-    'podpora_jinak' => 'Other ways to help',
     'nenalezeno' => 'Page not found',
     'nenalezeno_text' => 'This address does not exist on the website. The page may have moved – try the home page or the documentation search.',
     'nenalezeno_domu' => 'Go to the home page',

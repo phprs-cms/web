@@ -21,7 +21,6 @@ return [
     'podpora_nadpis' => 'phpRS ist kostenlos und werbefrei',
     'podpora_text' => 'Entwicklung, Sicherheitskorrekturen und diese Dokumentation werden durch freiwillige Beiträge finanziert. Auch ein kleiner regelmäßiger Betrag hilft.',
     'podpora_tlacitko' => 'Auf GitHub Sponsors unterstützen',
-    'podpora_jinak' => 'Andere Wege zu helfen',
     'nenalezeno' => 'Seite nicht gefunden',
     'nenalezeno_text' => 'Diese Adresse gibt es auf der Website nicht. Vielleicht wurde die Seite verschoben – versuchen Sie es mit der Startseite oder der Suche in der Dokumentation.',
     'nenalezeno_domu' => 'Zur Startseite',

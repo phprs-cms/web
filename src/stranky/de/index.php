@@ -75,7 +75,8 @@ $stranka['trida'] = 'je-uvod';
 		<div class="sablony-nahled">
 <?php foreach (['default' => 'Klassisch', 'classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
 			<a href="/de/vorlagen/#<?= e($slug) ?>">
-				<?= obrazek("snimky/sablona-$slug.webp", "Vorlage $nazev – Titelseite") ?>
+				<?= obrazek("snimky/sablona-$slug.webp", "Vorlage $nazev – Titelseite", 'jen-svetly') ?>
+				<?= obrazek("snimky/sablona-$slug-tmavy.webp", "Vorlage $nazev – Titelseite, dunkler Modus", 'jen-tmavy') ?>
 				<span><?= e($nazev) ?></span>
 			</a>
 <?php endforeach ?>

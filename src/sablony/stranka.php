@@ -3,12 +3,13 @@
  * Kostra každé stránky.
  *
  * @var array $web @var array $t @var string $jazyk @var string $otisk @var string $logo
- * @var array{titulek:string,popis:string,trida:string} $stranka @var string $obsah @var string $url @var string $adresa
+ * @var array{titulek:string,popis:string,trida:string,neindexovat?:bool} $stranka (neindexovat: stránka 404 – bez kanonické adresy) @var string $obsah @var string $url @var string $adresa
  * @var array<string,string> $jinde adresa téže stránky v ostatních jazycích (kód jazyka => adresa)
  */
 $titulek = $stranka['titulek'] === '' ? 'phpRS' : $stranka['titulek'] . ' – phpRS';
-$dok = $t['adresa_dokumentace'];
-$cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ? $dok : ($t['adresy'][$kam] ?? $kam)) . '/';
+$neindexovat = $stranka['neindexovat'] ?? false;
+/** Adresa stránky z nabídky nebo patičky v jazyce této stránky. */
+$cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ? $t['adresa_dokumentace'] : ($t['adresy'][$kam] ?? $kam)) . '/';
 ?>
 <!doctype html>
 <html lang="<?= e($jazyk) ?>">
@@ -19,7 +20,11 @@ $cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ?
 <?php if ($stranka['popis'] !== ''): ?>
 <meta name="description" content="<?= e($stranka['popis']) ?>">
 <?php endif ?>
+<?php if ($neindexovat): ?>
+<meta name="robots" content="noindex">
+<?php else: ?>
 <link rel="canonical" href="<?= e($web['adresa'] . $url) ?>">
+<?php endif ?>
 <?php if (count($jinde) > 1): ?>
 <?php foreach ($jinde as $kod => $adresaJinde): ?>
 <link rel="alternate" hreflang="<?= e($kod) ?>" href="<?= e($web['adresa'] . $adresaJinde) ?>">
@@ -28,7 +33,13 @@ $cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ?
 <?php endif ?>
 <meta property="og:title" content="<?= e($titulek) ?>">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="phpRS">
+<?php if ($stranka['popis'] !== ''): ?>
+<meta property="og:description" content="<?= e($stranka['popis']) ?>">
+<?php endif ?>
+<?php if (!$neindexovat): ?>
 <meta property="og:url" content="<?= e($web['adresa'] . $url) ?>">
+<?php endif ?>
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="/assets/img/phprs-znacka.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/phprs-znacka-32.png" sizes="32x32" type="image/png">
@@ -47,7 +58,7 @@ $cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ?
 <?php foreach ($t['menu'] as $kam => $popisek): ?>
 			<a href="<?= e($cil($kam)) ?>"<?= $adresa === $kam ? ' aria-current="page"' : '' ?>><?= e($popisek) ?></a>
 <?php endforeach ?>
-			<a class="tl tl-maly" href="<?= e($cil('stahnout')) ?>"><?= e($t['stahnout']) ?></a>
+			<a class="tl tl-maly" href="<?= e($cil('stahnout')) ?>"<?= $adresa === 'stahnout' ? ' aria-current="page"' : '' ?>><?= e($t['stahnout']) ?></a>
 <?php if (count($jinde) > 1): ?>
 			<span class="jazyky" role="group" aria-label="<?= e($t['jazyk_webu']) ?>">
 <?php foreach ($jinde as $kod => $adresaJinde): ?>

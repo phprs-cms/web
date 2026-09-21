@@ -19,9 +19,18 @@
 	var menuTl = document.querySelector('[data-menu]');
 	var menu = document.getElementById('menu');
 	if (menuTl && menu) {
+		var prepniMenu = function (otevrit) {
+			menu.classList.toggle('je-otevrene', otevrit);
+			menuTl.setAttribute('aria-expanded', otevrit ? 'true' : 'false');
+		};
 		menuTl.addEventListener('click', function () {
-			var otevrene = menu.classList.toggle('je-otevrene');
-			menuTl.setAttribute('aria-expanded', otevrene ? 'true' : 'false');
+			prepniMenu(!menu.classList.contains('je-otevrene'));
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && menu.classList.contains('je-otevrene')) {
+				prepniMenu(false);
+				menuTl.focus();
+			}
 		});
 	}
 
@@ -40,7 +49,7 @@
 	var nacita = null;
 
 	function bezDiakritiky(text) {
-		return text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+		return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 	}
 
 	function nacti() {

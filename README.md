@@ -12,6 +12,8 @@ php build.php
 
 Výstup je ve složce `public/`. Náhled: `php -S 127.0.0.1:8095 -t public`.
 
+Před nasazením spusťte `php tools/kontrola.php` – projde sestavený web a skončí chybou, když najde rozbitý odkaz, chybějící překlad klíče nebo nevalidní kostru stránky.
+
 Dokumentace se nepíše tady. Skript ji při sestavení převezme z repozitáře CMS (`docs/prirucka/<jazyk>/*.md` a `osnova.json`), který čeká ve složce `../phprs3`; jinou cestu určí proměnná `PHPRS_CMS`. Odtud se bere i číslo verze a logo.
 
 ## Struktura
@@ -28,6 +30,7 @@ Dokumentace se nepíše tady. Skript ji při sestavení převezme z repozitáře
 | `static/` | soubory kopírované do kořene webu: `.htaccess`, později `aktualizace.json` |
 | `tools/nasad.sh` | nasazení na hosting |
 | `tools/snimky.sh` | snímky obrazovek z běžící instance CMS |
+| `tools/kontrola.php` | kontrola sestaveného webu: HTML, vnitřní odkazy a kotvy, hreflang, sitemap, klíče textů, čeština v en/de |
 
 Hodnota `null` v `src/web.php` znamená „zatím není“ – stránky pak nic neslibují (např. stažení ukazuje „veřejná beta se připravuje“).
 

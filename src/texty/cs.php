@@ -1,5 +1,7 @@
 <?php
 return [
+    // adresy produktových stránek; čeština je zdroj, takže se shodují s názvy souborů
+    'adresy' => ['funkce' => 'funkce', 'sablony' => 'sablony', 'stahnout' => 'stahnout', 'podporit' => 'podporit', 'bezpecnost' => 'bezpecnost', 'o-projektu' => 'o-projektu', 'soukromi' => 'soukromi'],
     'adresa_dokumentace' => 'dokumentace',
     'dokumentace' => 'Dokumentace',
     'menu' => ['funkce' => 'Funkce', 'sablony' => 'Šablony', 'dokumentace' => 'Dokumentace', 'podporit' => 'Podpořit'],
@@ -20,7 +22,6 @@ return [
     'podpora_nadpis' => 'phpRS je zdarma a bez reklam',
     'podpora_text' => 'Vývoj, bezpečnostní opravy a tuhle dokumentaci platí dobrovolné příspěvky. Pomůže i malá pravidelná částka.',
     'podpora_tlacitko' => 'Podpořit na GitHub Sponsors',
-    'podpora_jinak' => 'Jak jinak pomoci',
     'nenalezeno' => 'Stránka nenalezena',
     'nenalezeno_text' => 'Tahle adresa na webu není. Možná se stránka přesunula – zkuste úvod nebo hledání v dokumentaci.',
     'nenalezeno_domu' => 'Na úvodní stránku',

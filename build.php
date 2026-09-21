@@ -23,46 +23,76 @@ $web = require KOREN . '/src/web.php';
 if (is_file($cms . '/system/bootstrap.php') && preg_match("/const PHPRS_VERSION = '([^']+)'/", (string) file_get_contents($cms . '/system/bootstrap.php'), $m)) {
     $web['verze'] = $m[1];
 }
+if ($web['stahnout_url'] !== null) {
+    $web['stahnout_url'] = str_replace('%s', $web['verze'], $web['stahnout_url']);
+}
+// podepsaný soubor pro aktualizace musí mluvit o téže verzi, jakou web nabízí ke stažení
+$manifest = is_file(KOREN . '/static/aktualizace.json') ? json_decode((string) file_get_contents(KOREN . '/static/aktualizace.json'), true) : null;
+if (is_array($manifest) && ($manifest['verze'] ?? '') !== $web['verze']) {
+    fwrite(STDERR, "POZOR: static/aktualizace.json je pro verzi {$manifest['verze']}, web nabízí {$web['verze']}.\n");
+}
 
 function e(string $text): string
 {
     return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+/**
+ * Soubory, které tohle sestavení vytvořilo (cesta od public/). Nezměněný soubor se nepřepisuje a na konci se smaže jen to,
+ * co v public/ přebývá. Mazat a znovu zapisovat celou složku nejde: běžící náhled by přišel o kořen a iCloud, ve kterém
+ * zdrojáky leží, z rychlého smazání a obnovení dělá kopie „index 2.html“.
+ *
+ * @var array<string,true> $GLOBALS['zapsano']
+ */
+$GLOBALS['zapsano'] = [];
+
 /** Zapíše soubor do public/ a založí potřebné složky. */
 function zapis(string $cesta, string $obsah): void
 {
-    $soubor = VYSTUP . '/' . ltrim($cesta, '/');
+    $cesta = ltrim($cesta, '/');
+    $soubor = VYSTUP . '/' . $cesta;
+    $GLOBALS['zapsano'][$cesta] = true;
     if (!is_dir(dirname($soubor))) {
         mkdir(dirname($soubor), 0775, true);
     }
-    file_put_contents($soubor, $obsah);
+    if (!is_file($soubor) || file_get_contents($soubor) !== $obsah) {
+        file_put_contents($soubor, $obsah);
+    }
 }
 
+/** Zkopíruje soubor nebo celou složku do public/ ($kam je cesta od public/). */
 function kopiruj(string $odkud, string $kam): void
 {
     if (is_dir($odkud)) {
         foreach (array_diff((array) scandir($odkud), ['.', '..', '.DS_Store']) as $polozka) {
-            kopiruj("$odkud/$polozka", "$kam/$polozka");
+            kopiruj("$odkud/$polozka", ltrim("$kam/$polozka", '/'));
         }
 
         return;
     }
-    if (!is_dir(dirname($kam))) {
-        mkdir(dirname($kam), 0775, true);
+    $cil = VYSTUP . '/' . $kam;
+    $GLOBALS['zapsano'][$kam] = true;
+    if (!is_dir(dirname($cil))) {
+        mkdir(dirname($cil), 0775, true);
     }
-    copy($odkud, $kam);
+    if (!is_file($cil) || filesize($cil) !== filesize($odkud) || hash_file('md5', $cil) !== hash_file('md5', $odkud)) {
+        copy($odkud, $cil);
+    }
 }
 
-function smaz(string $cesta): void
+/** Smaže z public/ všechno, co tohle sestavení nevytvořilo, a prázdné složky. */
+function uklid(): void
 {
-    if (is_dir($cesta) && !is_link($cesta)) {
-        foreach (array_diff((array) scandir($cesta), ['.', '..']) as $polozka) {
-            smaz("$cesta/$polozka");
+    $polozky = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(VYSTUP, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
+    foreach ($polozky as $polozka) {
+        $cesta = (string) $polozka;
+        if ($polozka->isDir() && !$polozka->isLink()) {
+            if (count((array) scandir($cesta)) === 2) {
+                rmdir($cesta);
+            }
+        } elseif (!isset($GLOBALS['zapsano'][substr($cesta, strlen(VYSTUP) + 1)])) {
+            unlink($cesta);
         }
-        rmdir($cesta);
-    } elseif (file_exists($cesta)) {
-        unlink($cesta);
     }
 }
 
@@ -84,15 +114,16 @@ function obrazek(string $soubor, string $alt, string $trida = '', bool $lazy = t
         if (BEZ_SNIMKU) {
             return '';
         }
-        $soubor = 'snimky/' . $GLOBALS['jazykStranky'] . substr($soubor, 6);
+        $soubor = 'snimky/' . $GLOBALS['jazykStranky'] . substr($soubor, strlen('snimky'));
     }
     $cesta = KOREN . '/assets/img/' . $soubor;
-    if (!is_file($cesta)) {
-        fwrite(STDERR, "Chybí obrázek assets/img/$soubor\n");
+    $rozmery = is_file($cesta) ? getimagesize($cesta) : false;
+    if ($rozmery === false) {
+        fwrite(STDERR, (is_file($cesta) ? 'Nečitelný obrázek' : 'Chybí obrázek') . " assets/img/$soubor\n");
 
         return '';
     }
-    [$sirka, $vyska] = (array) getimagesize($cesta);
+    [$sirka, $vyska] = $rozmery;
 
     return '<img src="/assets/img/' . e($soubor) . '" alt="' . e($alt) . '" width="' . (int) $sirka . '" height="' . (int) $vyska . '"'
         . ($trida !== '' ? ' class="' . e($trida) . '"' : '') . ($lazy ? ' loading="lazy" decoding="async"' : ' fetchpriority="high"') . '>';
@@ -110,28 +141,28 @@ function logo(string $cms): string
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// obsah public/ se maže, složka zůstává - běžící náhledový server by jinak přišel o svůj kořen
+if (!is_file("$cms/docs/prirucka/osnova.json")) {
+    fwrite(STDERR, "Nenašel jsem repozitář CMS s příručkou ($cms/docs/prirucka/osnova.json). Cestu určí proměnná PHPRS_CMS.\n");
+    exit(1);
+}
+
 if (!is_dir(VYSTUP)) {
     mkdir(VYSTUP, 0775, true);
 }
-foreach (array_diff((array) scandir(VYSTUP), ['.', '..']) as $polozka) {
-    smaz(VYSTUP . '/' . $polozka);
-}
-kopiruj(KOREN . '/assets', VYSTUP . '/assets');
+kopiruj(KOREN . '/assets', 'assets');
 if (BEZ_SNIMKU) {
-    smaz(VYSTUP . '/assets/img/snimky');
+    // snímky se do výstupu nepočítají, závěrečný úklid je smaže
+    $GLOBALS['zapsano'] = array_filter($GLOBALS['zapsano'], static fn (string $c): bool => !str_starts_with($c, 'assets/img/snimky/'), ARRAY_FILTER_USE_KEY);
 }
-kopiruj(KOREN . '/static', VYSTUP);
-if (!is_dir(VYSTUP . '/assets/img')) {
-    mkdir(VYSTUP . '/assets/img', 0775, true);
-}
+kopiruj(KOREN . '/static', '');
 foreach (['phprs-znacka.svg', 'phprs-znacka-32.png', 'phprs-znacka-180.png', 'phprs-logo.svg', 'phprs-logo-tmavy.svg'] as $obrazek) {
     if (is_file("$cms/image/$obrazek")) {
-        copy("$cms/image/$obrazek", VYSTUP . "/assets/img/$obrazek");
+        kopiruj("$cms/image/$obrazek", "assets/img/$obrazek");
     }
 }
 
-$otisk = substr(md5((string) file_get_contents(KOREN . '/assets/web.css') . file_get_contents(KOREN . '/assets/web.js')), 0, 8);
+// otisk do adres stylů a skriptů: prohlížeč je drží v cache měsíc, změna obsahu musí změnit adresu
+$otisk = substr(md5(implode('', array_map(static fn (string $s): string => (string) file_get_contents(KOREN . "/assets/$s"), ['web.css', 'web.js', 'rezim.js']))), 0, 8);
 $logo = logo($cms);
 $osnova = json_decode((string) file_get_contents("$cms/docs/prirucka/osnova.json"), true, 16, JSON_THROW_ON_ERROR);
 $mapa = [];
@@ -167,6 +198,7 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
     foreach ($web['stranky'] as $adresa) {
         $soubor = KOREN . "/src/stranky/$jazyk/" . ($adresa === '' ? 'index' : $adresa) . '.php';
         if (!is_file($soubor)) {
+            fwrite(STDERR, "Stránka ($jazyk): chybí " . substr($soubor, strlen(KOREN) + 1) . "\n");
             continue;
         }
         $stranka = ['titulek' => '', 'popis' => '', 'trida' => ''];
@@ -265,14 +297,21 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
     zapis($zaklad . 'hledani.json', json_encode($hledani, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
 }
 
-// stránka 404 ve výchozím jazyce
-$t = $texty[$web['vychozi_jazyk']];
-zapis('404.html', sablona('stranka', ['jinde' => [], 'web' => $web, 't' => $t, 'jazyk' => $web['vychozi_jazyk'], 'otisk' => $otisk, 'logo' => $logo, 'url' => '/404.html', 'adresa' => '404',
-    'stranka' => ['titulek' => $t['nenalezeno'], 'popis' => '', 'trida' => ''],
-    'obsah' => '<section class="zahlavi"><div class="obal"><h1>' . e($t['nenalezeno']) . '</h1><p class="perex">' . e($t['nenalezeno_text']) . '</p><p class="tlacitka"><a class="tl" href="/' . $web['vychozi_jazyk'] . '/">' . e($t['nenalezeno_domu']) . '</a></p></div></section>']));
+// stránka 404: jedna pro celý web, ve výchozím jazyce; do ostatních jazyků vede odkaz na jejich úvod
+$vychozi = $web['vychozi_jazyk'];
+$t = $texty[$vychozi];
+$jineJazyky = [];
+foreach (array_diff(array_keys($web['jazyky']), [$vychozi]) as $j) {
+    $jineJazyky[] = '<a href="' . e($adresaStranky($j, '')) . '" lang="' . e($j) . '" hreflang="' . e($j) . '">' . e($web['jazyky'][$j] . ' – ' . $texty[$j]['nenalezeno_domu']) . '</a>';
+}
+$obsah404 = '<section class="zahlavi"><div class="obal"><h1>' . e($t['nenalezeno']) . '</h1><p class="perex">' . e($t['nenalezeno_text']) . '</p>'
+    . '<p class="tlacitka"><a class="tl" href="' . e($adresaStranky($vychozi, '')) . '">' . e($t['nenalezeno_domu']) . '</a>'
+    . '<a class="tl tl-obrys" href="' . e($adresaPrirucky($vychozi, 'index')) . '">' . e($t['dokumentace']) . '</a></p>'
+    . '<p class="drobne">' . implode(' · ', $jineJazyky) . '</p></div></section>';
+zapis('404.html', sablona('stranka', ['web' => $web, 't' => $t, 'jazyk' => $vychozi, 'otisk' => $otisk, 'logo' => $logo, 'url' => '/404.html', 'adresa' => '404', 'jinde' => [],
+    'stranka' => ['titulek' => $t['nenalezeno'], 'popis' => '', 'trida' => '', 'neindexovat' => true], 'obsah' => $obsah404]));
 
 // kořen webu: na hostingu rozhoduje .htaccess podle jazyka prohlížeče, tenhle soubor je záloha bez něj
-$vychozi = $web['vychozi_jazyk'];
 zapis('index.html', '<!doctype html><html lang="' . $vychozi . '"><meta charset="utf-8"><title>phpRS</title><meta http-equiv="refresh" content="0; url=/' . $vychozi . '/"><link rel="canonical" href="' . $web['adresa'] . '/' . $vychozi . '/"><p><a href="/' . $vychozi . '/">phpRS</a></p></html>' . "\n");
 
 $sitemap = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
@@ -281,5 +320,7 @@ foreach ($mapa as $url) {
 }
 zapis('sitemap.xml', $sitemap . "</urlset>\n");
 zapis('robots.txt', "User-agent: *\nAllow: /\n\nSitemap: {$web['adresa']}/sitemap.xml\n");
+
+uklid();
 
 echo "Hotovo: $pocet stránek, verze {$web['verze']}, výstup v public/\n";
