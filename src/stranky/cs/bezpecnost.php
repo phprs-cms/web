@@ -19,7 +19,7 @@ $stranka['popis'] = 'Jak phpRS chrání weby: podepsané aktualizace, automatick
 			<h2>Co se stane potom</h2>
 			<ol class="kroky kroky-male">
 				<li>Oprava vyjde jako <strong>bezpečnostní vydání</strong>.</li>
-				<li>Weby se zapnutou automatikou si ho do 12 hodin <strong>nainstalují samy</strong> – po záloze databáze a ověření podpisu.</li>
+				<li>Weby se zapnutou automatikou si ho do 12 hodin <strong>nainstalují samy</strong> – po záloze databáze a ověření podpisu. Když to server neumí (chybí <code>zip</code> nebo <code>sodium</code>, soubory nejdou přepsat), dostane správce aspoň e-mail.</li>
 				<li>Správce dostane e-mail. Kdo má automatiku vypnutou, uvidí upozornění a aktualizuje jedním tlačítkem.</li>
 			</ol>
 		</div>
@@ -43,7 +43,7 @@ $stranka['popis'] = 'Jak phpRS chrání weby: podepsané aktualizace, automatick
 	<div class="obal">
 		<div class="skupina-hlava">
 			<h2>Výchozí nastavení</h2>
-			<p>Bezpečné chování není volba v nastavení. Je zapnuté od instalace.</p>
+			<p>Bezpečné chování není volba v nastavení. Je zapnuté od instalace – jen dvoufázové přihlášení si zapíná každý účet sám a Stav systému ho připomíná.</p>
 		</div>
 		<dl class="funkce">
 			<div><dt>Dvoufázové přihlášení</dt><dd>TOTP se záložními kódy. Stav systému upozorní na administrátora, který ho nemá.</dd></div>

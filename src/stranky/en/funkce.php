@@ -6,7 +6,7 @@ $skupiny = [
     ['psani', 'Writing', 'An editor that stays out of the way, and content types that a magazine really uses.', 'snimky/admin-editor', 'Article editor', [
         'WYSIWYG editor with no third-party libraries' => 'Headings, quotes, tables, photo galleries, attachments. Clean output, no clutter in the HTML.',
         'Video and social media posts from a plain URL' => 'You paste a link, the system does the rest. Third-party content loads for the reader only after a click.',
-        'Revisions and version comparison' => 'Every save is a revision. You see the differences side by side and can restore any version.',
+        'Revisions and version comparison' => 'Every change to the text is a revision (the last 20 are kept). Differences are highlighted in the text and you can restore any version.',
         'Drafts are saved continuously' => 'In the browser and on the server. A lock makes sure two people do not edit one article at the same time.',
         'Article templates and content types' => 'Long read, Photo story, Interview; live coverage, review with a rating, podcast.',
         'Scheduled publishing' => 'The article goes out at the set time – in the time zone of the site, not of the server.',
@@ -14,25 +14,25 @@ $skupiny = [
     ['redakce', 'Newsroom', 'From a single author to an editorial team with a proofreader and a front page editor.', 'snimky/admin-prehled', 'Admin dashboard', [
         'Roles and permissions' => 'Author, editor, administrator. The right to publish is separate. Access can be limited to selected sections.',
         'Handover for proofreading' => 'Draft → for proofreading → approved → published. Handovers and returns are announced by e-mail.',
-        'Editorial calendar and front page' => 'What goes out when and what is at the top of the site – in one place.',
+        'Editorial calendar and front page' => 'What goes out when and what is at the top of the site – two clear screens right next to the articles.',
         'Editing directly on the site' => 'You fix a typo on the page where you found it. This works for articles and pages.',
         'Command palette' => 'Ctrl/⌘+K: find an article, start a new one, jump to the settings. No clicking through menus.',
-        'Bulk actions and audit log' => 'Move, publish or delete several articles at once. Important changes are logged.',
+        'Bulk actions and audit log' => 'Move to a section, add a tag, lock or delete several articles at once. Important changes are logged.',
     ]],
     ['vzhled', 'Appearance', 'Three templates, a site identity and a layout that you put together directly on the page.', 'snimky/web-bloky', 'Visual block editor', [
         'Three built-in templates' => 'Classic Newspaper, Modern Magazine and Minimal.',
         'Site identity' => 'Logo, colour and fonts are set once and the templates take them over.',
-        'Dark mode' => 'In all templates and in the administration. It follows the reader\'s system and can be switched.',
-        'Visual block editor' => 'You drag columns and blocks on the live page – you see the same thing as the reader.',
-        'Custom template' => 'Plain PHP and CSS in one folder. The system checks the template before it is switched on.',
+        'Dark mode' => 'In all templates – you switch it on in Site identity and it follows the reader\'s device. In the administration everyone toggles it for themselves.',
+        'Visual block editor' => 'You drag blocks and pick the column layout on the live page – you see the same thing as the reader.',
+        'Custom template' => 'Plain PHP and CSS in one folder. Files written by Claude pass a check of allowed functions.',
         'Images without layout shifts' => 'Dimensions, WebP variants and the placeholder colour are filled in automatically.',
     ]],
     ['ctenari', 'Readers and revenue', 'Tools a magazine uses to build its audience and pay for its operation.', null, '', [
         'Comments with moderation' => 'Antispam without cookies and without third-party services.',
-        'Registration without a password' => 'The reader logs in with a link from an e-mail. Saved articles, newsletter subscription, comments under their own account.',
+        'Registration without a password' => 'The reader signs up with just an e-mail; they set a password from a link, or log in with a one-time link. Saved articles, newsletter subscription, comments under their own account.',
         'Locked content and a soft paywall' => 'Part of the content only for logged-in readers or subscribers; a few locked articles per month can be free.',
         'Newsletter' => 'Manual and automatic selection of new articles, separately for each language of the site. A queue with retries.',
-        'Web Push' => 'Browser notifications about new articles, with no third-party service.',
+        'Web Push' => 'Browser notifications about new articles – no intermediary, only the browsers\' own delivery services.',
         'Advertising system' => 'Positions, targeting by section, timed campaigns and a report of impressions and clicks.',
     ]],
     ['seo', 'SEO and AI search', 'So that both people and machines find the article – and so that you control what machines are allowed to do.', null, '', [
@@ -40,7 +40,7 @@ $skupiny = [
         'Sitemap, RSS and JSON Feed' => 'Generated automatically, including language versions.',
         'IndexNow' => 'Search engines learn about a new article right away.',
         'llms.txt and Markdown versions of articles' => 'Clean text for language models, if you want that.',
-        'AI crawler control' => 'You decide which bots you let in – in the settings, not by editing robots.txt by hand.',
+        'AI crawler control' => 'One switch lets AI bots (GPTBot, ClaudeBot, PerplexityBot…) in or keeps them out – without editing robots.txt by hand.',
     ]],
     ['jazyky', 'Languages', 'A multilingual site and a multilingual editorial team.', null, '', [
         'Language versions of the site' => 'Czech, Slovak, English, German – with hreflang and linked translations.',
@@ -55,9 +55,9 @@ $skupiny = [
     ['provoz', 'Operation and security', 'Things you appreciate only when something goes wrong. Here they are ready in advance.', 'snimky/admin-stav', 'System status', [
         'Import from WordPress and site export' => 'Bring over articles, sections, tags, pages, comments and images from a WordPress export; old addresses are redirected. And you can take all your content away in an open format at any time.',
         'Signed updates' => 'One button, an Ed25519 signature. Security releases install themselves.',
-        'Backups, also off the server' => 'Weekly and before every update; a copy to FTP or S3. Restore from the administration.',
+        'Backups, also off the server' => 'A database backup weekly and before every update; a copy to FTP/FTPS or S3 storage. Restore from the administration; files travel with the site export.',
         'System status' => 'Server, database, permissions, security, mail, cron – with advice on what to fix. Also as JSON for monitoring.',
-        'Two-factor login' => 'TOTP with backup codes, or a passkey (fingerprint, Face ID). The account is locked after repeated failures.',
+        'Two-factor login' => 'TOTP with backup codes, plus a passkey (fingerprint, Face ID) as a more convenient second step. The account is locked after repeated failures.',
         'Core integrity check' => 'Files are compared with the signed file list of the release.',
         'Mail over SMTP with a queue' => 'Undelivered messages are retried; an overview of recent messages.',
     ]],
@@ -66,7 +66,7 @@ $skupiny = [
 <section class="zahlavi">
 	<div class="obal">
 		<h1>Features</h1>
-		<p class="perex">Everything below is part of one package. Nothing is bought separately and nothing is installed afterwards – the less used parts are simply switched on in the settings as extensions.</p>
+		<p class="perex">Everything below is part of one package. Nothing is bought separately and nothing is installed afterwards – the less used parts are simply switched on in the administration on the Extensions page.</p>
 		<nav class="kotvy" aria-label="Feature groups">
 <?php foreach ($skupiny as [$id, $nazev]): ?>
 			<a href="#<?= e($id) ?>"><?= e($nazev) ?></a>

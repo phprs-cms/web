@@ -36,7 +36,7 @@ $sablony = [
 		</div>
 		<div>
 			<h2>With the help of Claude</h2>
-			<p>Through the MCP connection, Claude can write a template from your description. Every custom template goes through a check that does not allow file access, network access or starting processes – no matter who wrote it.</p>
+			<p>Through the MCP connection, Claude can write a template from your description. Every file Claude saves goes through a check that does not allow file access, network access or starting processes.</p>
 		</div>
 	</div>
 </section>

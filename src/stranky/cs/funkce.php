@@ -6,7 +6,7 @@ $skupiny = [
     ['psani', 'Psaní', 'Editor, který nepřekáží, a typy obsahu, které magazín opravdu používá.', 'snimky/admin-editor', 'Editor článku', [
         'WYSIWYG editor bez cizích knihoven' => 'Nadpisy, citace, tabulky, fotogalerie, přílohy. Čistý výstup, žádný nepořádek v HTML.',
         'Video a příspěvky ze sítí pouhou adresou' => 'Vložíte odkaz, systém udělá zbytek. Obsah třetích stran se čtenáři načte až po kliknutí.',
-        'Revize a porovnání verzí' => 'Každé uložení je revize. Rozdíly vidíte vedle sebe a kteroukoli verzi vrátíte.',
+        'Revize a porovnání verzí' => 'Každá změna textu je revize (posledních 20). Rozdíly vidíte zvýrazněné v textu a kteroukoli verzi vrátíte.',
         'Koncept se ukládá průběžně' => 'V prohlížeči i na serveru. Zámek hlídá, aby jeden článek neupravovali dva lidé zároveň.',
         'Šablony článku a typy obsahu' => 'Dlouhé čtení, Fotoreportáž, Rozhovor; živá reportáž, recenze s hodnocením, podcast.',
         'Plánované vydání' => 'Článek vyjde v nastavený čas – podle časového pásma webu, ne serveru.',
@@ -14,25 +14,25 @@ $skupiny = [
     ['redakce', 'Redakce', 'Od jednoho autora po redakci s korektorem a editorem titulní strany.', 'snimky/admin-prehled', 'Přehled administrace', [
         'Role a oprávnění' => 'Autor, redaktor, administrátor. Právo vydávat zvlášť. Přístup jen k vybraným rubrikám.',
         'Předávka ke korektuře' => 'Koncept → ke korektuře → schváleno → vydáno. O předání a vrácení chodí e-mail.',
-        'Redakční kalendář a titulní strana' => 'Co kdy vyjde a co je na webu nahoře – na jednom místě.',
+        'Redakční kalendář a titulní strana' => 'Co kdy vyjde a co je na webu nahoře – dvě přehledné obrazovky hned u článků.',
         'Úprava přímo na webu' => 'Překlep opravíte na stránce, kde jste ho našli. Platí pro články i stránky.',
         'Paleta příkazů' => 'Ctrl/⌘+K: najít článek, založit nový, skočit do nastavení. Bez klikání v nabídkách.',
-        'Hromadné akce a protokol' => 'Přesun, vydání, smazání více článků najednou. Důležité změny se zapisují.',
+        'Hromadné akce a protokol' => 'Přesun do rubriky, přidání štítku, zamknutí a smazání více článků najednou. Důležité změny se zapisují.',
     ]],
     ['vzhled', 'Vzhled', 'Tři šablony, identita webu a rozvržení, které skládáte přímo na stránce.', 'snimky/web-bloky', 'Vizuální editor bloků', [
         'Tři vestavěné šablony' => 'Classic Newspaper, Modern Magazine a Minimal.',
         'Identita webu' => 'Logo, barva a písma se nastaví jednou a šablony je převezmou.',
-        'Tmavý režim' => 'Ve všech šablonách i v administraci. Řídí se systémem čtenáře, jde přepnout.',
-        'Vizuální editor bloků' => 'Sloupce a bloky přetahujete na živé stránce – vidíte totéž co čtenář.',
-        'Vlastní šablona' => 'Obyčejné PHP a CSS v jedné složce. Systém šablonu před zapnutím zkontroluje.',
+        'Tmavý režim' => 'Ve všech šablonách – zapnete ho v Identitě webu a řídí se zařízením čtenáře. V administraci ho přepíná každý sám.',
+        'Vizuální editor bloků' => 'Bloky přetahujete a rozvržení sloupců volíte na živé stránce – vidíte totéž co čtenář.',
+        'Vlastní šablona' => 'Obyčejné PHP a CSS v jedné složce. Soubory, které píše Claude, procházejí kontrolou povolených funkcí.',
         'Obrázky bez poskakování' => 'Rozměry, WebP varianty a barva podkladu se doplňují samy.',
     ]],
     ['ctenari', 'Čtenáři a příjmy', 'Nástroje, kterými si magazín buduje publikum a platí provoz.', null, '', [
         'Komentáře s moderací' => 'Antispam bez cookies a bez cizích služeb.',
-        'Registrace bez hesla' => 'Čtenář se přihlásí odkazem z e-mailu. Uložené články, odběr newsletteru, komentáře pod vlastním účtem.',
+        'Registrace bez hesla' => 'Čtenář se registruje jen e-mailem; heslo si nastaví z odkazu, nebo se přihlašuje jednorázovým odkazem. Uložené články, odběr newsletteru, komentáře pod vlastním účtem.',
         'Zamčený obsah a měkký paywall' => 'Část obsahu jen pro přihlášené nebo předplatitele; několik zamčených článků měsíčně může být zdarma.',
         'Newsletter' => 'Ruční i automatický výběr nových článků, pro každý jazyk webu zvlášť. Fronta s opakováním.',
-        'Web Push' => 'Oznámení o nových článcích do prohlížeče, bez služby třetí strany.',
+        'Web Push' => 'Oznámení o nových článcích do prohlížeče – bez zprostředkovatele, jen přes doručovací služby samotných prohlížečů.',
         'Reklamní systém' => 'Pozice, cílení na rubriky, časové kampaně a výkaz zobrazení a prokliků.',
     ]],
     ['seo', 'SEO a vyhledávání s AI', 'Aby článek našel člověk i stroj – a abyste měli pod kontrolou, co stroje smějí.', null, '', [
@@ -40,7 +40,7 @@ $skupiny = [
         'Mapa webu, RSS a JSON Feed' => 'Generují se samy, včetně jazykových verzí.',
         'IndexNow' => 'Vyhledávače se o novém článku dozvědí hned.',
         'llms.txt a Markdown verze článků' => 'Čistý text pro jazykové modely, pokud o to stojíte.',
-        'Řízení AI crawlerů' => 'Rozhodnete, které roboty pustíte – v nastavení, ne ruční úpravou robots.txt.',
+        'Řízení AI crawlerů' => 'Jedním přepínačem AI roboty (GPTBot, ClaudeBot, PerplexityBot…) pustíte, nebo zakážete – bez ruční úpravy robots.txt.',
     ]],
     ['jazyky', 'Jazyky', 'Vícejazyčný web i vícejazyčná redakce.', null, '', [
         'Jazykové verze webu' => 'Čeština, slovenština, angličtina, němčina – s hreflang a propojením překladů.',
@@ -55,9 +55,9 @@ $skupiny = [
     ['provoz', 'Provoz a bezpečnost', 'Věci, které oceníte, až když se něco pokazí. Tady jsou hotové předem.', 'snimky/admin-stav', 'Stav systému', [
         'Import z WordPressu a export webu' => 'Články, rubriky, štítky, stránky, komentáře i obrázky převedete z exportu WordPressu; staré adresy se přesměrují. A celý obsah kdykoli odnesete v otevřeném formátu.',
         'Podepsané aktualizace' => 'Jedno tlačítko, podpis Ed25519. Bezpečnostní vydání se nainstalují sama.',
-        'Zálohy i mimo server' => 'Týdně a před každou aktualizací; kopie na FTP nebo do S3. Obnova z administrace.',
+        'Zálohy i mimo server' => 'Záloha databáze týdně a před každou aktualizací; kopie na FTP/FTPS nebo do úložiště S3. Obnova z administrace, soubory odnese Export webu.',
         'Stav systému' => 'Server, databáze, práva, zabezpečení, pošta, cron – s radou, co opravit. I jako JSON pro dohled.',
-        'Dvoufázové přihlášení' => 'TOTP se záložními kódy nebo přihlašovací klíč (otisk prstu, Face ID). Zámek účtu po opakovaných chybách.',
+        'Dvoufázové přihlášení' => 'TOTP se záložními kódy a k němu přihlašovací klíč (otisk prstu, Face ID) jako pohodlnější druhý krok. Zámek účtu po opakovaných chybách.',
         'Kontrola neporušenosti jádra' => 'Soubory se porovnávají s podepsaným seznamem vydání.',
         'Pošta přes SMTP s frontou' => 'Nedoručené zprávy se zkoušejí znovu; přehled posledních zpráv.',
     ]],
@@ -66,7 +66,7 @@ $skupiny = [
 <section class="zahlavi">
 	<div class="obal">
 		<h1>Funkce</h1>
-		<p class="perex">Všechno níže je součást jednoho balíčku. Nic se nedokupuje a nic se nedoinstalovává – méně používané části se jen zapínají v nastavení jako rozšíření.</p>
+		<p class="perex">Všechno níže je součást jednoho balíčku. Nic se nedokupuje a nic se nedoinstalovává – méně používané části se jen zapínají v administraci na stránce Rozšíření.</p>
 		<nav class="kotvy" aria-label="Skupiny funkcí">
 <?php foreach ($skupiny as [$id, $nazev]): ?>
 			<a href="#<?= e($id) ?>"><?= e($nazev) ?></a>

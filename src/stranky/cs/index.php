@@ -39,11 +39,11 @@ $stranka['trida'] = 'je-uvod';
 			</article>
 			<article>
 				<h3>Bezpečnost na prvním místě</h3>
-				<p>Aktualizace podepsané klíčem vydavatele, bezpečnostní opravy se instalují samy. Dvoufázové přihlášení, přísná Content Security Policy a kontrola neporušenosti souborů jádra.</p>
+				<p>Aktualizace podepsané klíčem vydavatele, bezpečnostní opravy se instalují samy. Dvoufázové přihlášení, přísná Content Security Policy v administraci a kontrola neporušenosti souborů jádra.</p>
 			</article>
 			<article>
 				<h3>Žádný obchod s plug-iny</h3>
-				<p>Rozšíření jsou uzavřená, kurátorovaná sada. Zapínáte je v nastavení – nic neinstalujete z cizích zdrojů, nic se nerozbije po aktualizaci a nic nepřináší cizí kód na váš web.</p>
+				<p>Rozšíření jsou uzavřená, kurátorovaná sada. Zapínáte je v administraci na stránce Rozšíření – nic neinstalujete z cizích zdrojů, nic se nerozbije po aktualizaci a nic nepřináší cizí kód na váš web.</p>
 			</article>
 			<article>
 				<h3>Soukromí čtenářů</h3>

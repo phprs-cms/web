@@ -6,7 +6,7 @@ $skupiny = [
     ['psani', 'Schreiben', 'Ein Editor, der nicht im Weg steht, und Inhaltstypen, die ein Magazin wirklich nutzt.', 'snimky/admin-editor', 'Artikeleditor', [
         'WYSIWYG-Editor ohne fremde Bibliotheken' => 'Überschriften, Zitate, Tabellen, Bildergalerien, Anhänge. Saubere Ausgabe, kein Durcheinander im HTML.',
         'Videos und Beiträge aus Netzwerken nur per Adresse' => 'Sie fügen den Link ein, das System erledigt den Rest. Inhalte Dritter laden beim Leser erst nach einem Klick.',
-        'Revisionen und Versionsvergleich' => 'Jedes Speichern ist eine Revision. Sie sehen die Unterschiede nebeneinander und stellen jede Version wieder her.',
+        'Revisionen und Versionsvergleich' => 'Jede Änderung am Text ist eine Revision (die letzten 20 bleiben erhalten). Unterschiede sind im Text hervorgehoben, jede Version lässt sich wiederherstellen.',
         'Der Entwurf wird laufend gespeichert' => 'Im Browser und auf dem Server. Eine Sperre verhindert, dass zwei Personen denselben Artikel gleichzeitig bearbeiten.',
         'Artikelvorlagen und Inhaltstypen' => 'Longread, Fotoreportage, Interview; Live-Reportage, Rezension mit Bewertung, Podcast.',
         'Geplante Veröffentlichung' => 'Der Artikel erscheint zur eingestellten Zeit – nach der Zeitzone der Website, nicht des Servers.',
@@ -14,25 +14,25 @@ $skupiny = [
     ['redakce', 'Redaktion', 'Vom einzelnen Autor bis zur Redaktion mit Korrektorat und Titelseiten-Editor.', 'snimky/admin-prehled', 'Übersicht der Administration', [
         'Rollen und Berechtigungen' => 'Autor, Redakteur, Administrator. Das Recht zu veröffentlichen wird gesondert vergeben. Zugriff nur auf ausgewählte Rubriken.',
         'Übergabe ans Korrektorat' => 'Entwurf → zur Korrektur → freigegeben → veröffentlicht. Über Übergabe und Rückgabe informiert eine E-Mail.',
-        'Redaktionskalender und Titelseite' => 'Was wann erscheint und was auf der Website oben steht – an einem Ort.',
+        'Redaktionskalender und Titelseite' => 'Was wann erscheint und was auf der Website oben steht – zwei übersichtliche Ansichten direkt bei den Artikeln.',
         'Bearbeiten direkt auf der Website' => 'Einen Tippfehler korrigieren Sie auf der Seite, auf der Sie ihn gefunden haben. Gilt für Artikel und Seiten.',
         'Befehlspalette' => 'Strg/⌘+K: Artikel finden, neuen anlegen, in die Einstellungen springen. Ohne Klicken durch Menüs.',
-        'Sammelaktionen und Protokoll' => 'Mehrere Artikel auf einmal verschieben, veröffentlichen oder löschen. Wichtige Änderungen werden protokolliert.',
+        'Sammelaktionen und Protokoll' => 'Mehrere Artikel auf einmal in ein Ressort verschieben, verschlagworten, sperren oder löschen. Wichtige Änderungen werden protokolliert.',
     ]],
     ['vzhled', 'Aussehen', 'Drei Vorlagen, die Identität der Website und ein Layout, das Sie direkt auf der Seite zusammenstellen.', 'snimky/web-bloky', 'Visueller Block-Editor', [
         'Drei mitgelieferte Vorlagen' => 'Classic Newspaper, Modern Magazine und Minimal.',
         'Identität der Website' => 'Logo, Farbe und Schriften werden einmal eingestellt, die Vorlagen übernehmen sie.',
-        'Dunkler Modus' => 'In allen Vorlagen und in der Administration. Richtet sich nach dem System des Lesers und lässt sich umschalten.',
-        'Visueller Block-Editor' => 'Spalten und Blöcke ziehen Sie auf der Live-Seite an ihren Platz – Sie sehen dasselbe wie der Leser.',
-        'Eigene Vorlage' => 'Gewöhnliches PHP und CSS in einem Ordner. Das System prüft die Vorlage vor dem Einschalten.',
+        'Dunkler Modus' => 'In allen Vorlagen – Sie schalten ihn in der Website-Identität ein, er richtet sich nach dem Gerät des Lesers. In der Administration schaltet jeder für sich um.',
+        'Visueller Block-Editor' => 'Blöcke ziehen Sie auf der Live-Seite an ihren Platz und wählen dort das Spaltenlayout – Sie sehen dasselbe wie der Leser.',
+        'Eigene Vorlage' => 'Gewöhnliches PHP und CSS in einem Ordner. Dateien, die Claude schreibt, durchlaufen eine Prüfung der erlaubten Funktionen.',
         'Bilder ohne Springen' => 'Abmessungen, WebP-Varianten und Hintergrundfarbe werden automatisch ergänzt.',
     ]],
     ['ctenari', 'Leser und Einnahmen', 'Werkzeuge, mit denen ein Magazin sein Publikum aufbaut und den Betrieb bezahlt.', null, '', [
         'Kommentare mit Moderation' => 'Spamschutz ohne Cookies und ohne fremde Dienste.',
-        'Registrierung ohne Passwort' => 'Der Leser meldet sich über einen Link aus der E-Mail an. Gespeicherte Artikel, Newsletter-Abo, Kommentare unter eigenem Konto.',
+        'Registrierung ohne Passwort' => 'Der Leser registriert sich nur mit seiner E-Mail-Adresse; das Passwort setzt er über einen Link, oder er meldet sich mit einem Einmal-Link an. Gespeicherte Artikel, Newsletter-Abo, Kommentare unter eigenem Konto.',
         'Gesperrte Inhalte und weiche Paywall' => 'Ein Teil der Inhalte nur für Angemeldete oder Abonnenten; einige gesperrte Artikel pro Monat können kostenlos sein.',
         'Newsletter' => 'Manuelle und automatische Auswahl neuer Artikel, für jede Sprache der Website getrennt. Warteschlange mit Wiederholung.',
-        'Web Push' => 'Benachrichtigungen über neue Artikel im Browser, ohne Dienst eines Drittanbieters.',
+        'Web Push' => 'Benachrichtigungen über neue Artikel im Browser – ohne Vermittler, nur über die Zustelldienste der Browser selbst.',
         'Anzeigensystem' => 'Positionen, Ausrichtung auf Rubriken, zeitlich begrenzte Kampagnen und ein Bericht über Einblendungen und Klicks.',
     ]],
     ['seo', 'SEO und KI-Suche', 'Damit Mensch und Maschine den Artikel finden – und Sie bestimmen, was Maschinen dürfen.', null, '', [
@@ -40,7 +40,7 @@ $skupiny = [
         'Sitemap, RSS und JSON Feed' => 'Entstehen automatisch, einschließlich der Sprachversionen.',
         'IndexNow' => 'Suchmaschinen erfahren sofort von einem neuen Artikel.',
         'llms.txt und Markdown-Versionen der Artikel' => 'Reiner Text für Sprachmodelle, wenn Sie das möchten.',
-        'Steuerung der KI-Crawler' => 'Sie entscheiden, welche Bots Sie zulassen – in den Einstellungen, nicht durch Bearbeiten der robots.txt von Hand.',
+        'Steuerung der KI-Crawler' => 'Mit einem Schalter lassen Sie KI-Bots (GPTBot, ClaudeBot, PerplexityBot…) zu oder sperren sie aus – ohne die robots.txt von Hand zu bearbeiten.',
     ]],
     ['jazyky', 'Sprachen', 'Mehrsprachige Website und mehrsprachige Redaktion.', null, '', [
         'Sprachversionen der Website' => 'Tschechisch, Slowakisch, Englisch, Deutsch – mit hreflang und verknüpften Übersetzungen.',
@@ -55,9 +55,9 @@ $skupiny = [
     ['provoz', 'Betrieb und Sicherheit', 'Dinge, die man erst schätzt, wenn etwas schiefgeht. Hier sind sie schon fertig.', 'snimky/admin-stav', 'Systemstatus', [
         'Import aus WordPress und Export der Website' => 'Artikel, Ressorts, Schlagwörter, Seiten, Kommentare und Bilder übernehmen Sie aus einem WordPress-Export; alte Adressen werden weitergeleitet. Und alle Inhalte nehmen Sie jederzeit in einem offenen Format mit.',
         'Signierte Aktualisierungen' => 'Eine Schaltfläche, Ed25519-Signatur. Sicherheitsversionen installieren sich selbst.',
-        'Backups auch außerhalb des Servers' => 'Wöchentlich und vor jeder Aktualisierung; Kopie per FTP oder nach S3. Wiederherstellung aus der Administration.',
+        'Backups auch außerhalb des Servers' => 'Datenbank-Backup wöchentlich und vor jeder Aktualisierung; Kopie per FTP/FTPS oder in einen S3-Speicher. Wiederherstellung aus der Administration; die Dateien nimmt der Website-Export mit.',
         'Systemstatus' => 'Server, Datenbank, Rechte, Absicherung, E-Mail, Cron – mit einem Hinweis, was zu beheben ist. Auch als JSON für das Monitoring.',
-        'Zwei-Faktor-Anmeldung' => 'TOTP mit Ersatzcodes oder ein Passkey (Fingerabdruck, Face ID). Kontosperre nach wiederholten Fehlversuchen.',
+        'Zwei-Faktor-Anmeldung' => 'TOTP mit Ersatzcodes und dazu ein Passkey (Fingerabdruck, Face ID) als bequemerer zweiter Schritt. Kontosperre nach wiederholten Fehlversuchen.',
         'Integritätsprüfung des Kerns' => 'Die Dateien werden mit der signierten Dateiliste der Version verglichen.',
         'E-Mail über SMTP mit Warteschlange' => 'Nicht zugestellte Nachrichten werden erneut versucht; Übersicht der letzten Nachrichten.',
     ]],
@@ -66,7 +66,7 @@ $skupiny = [
 <section class="zahlavi">
 	<div class="obal">
 		<h1>Funktionen</h1>
-		<p class="perex">Alles, was folgt, gehört zu einem einzigen Paket. Nichts wird dazugekauft und nichts nachinstalliert – seltener genutzte Teile schalten Sie in den Einstellungen als Erweiterungen ein.</p>
+		<p class="perex">Alles, was folgt, gehört zu einem einzigen Paket. Nichts wird dazugekauft und nichts nachinstalliert – seltener genutzte Teile schalten Sie in der Administration auf der Seite Erweiterungen ein.</p>
 		<nav class="kotvy" aria-label="Funktionsgruppen">
 <?php foreach ($skupiny as [$id, $nazev]): ?>
 			<a href="#<?= e($id) ?>"><?= e($nazev) ?></a>

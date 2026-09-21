@@ -39,11 +39,11 @@ $stranka['trida'] = 'je-uvod';
 			</article>
 			<article>
 				<h3>Security comes first</h3>
-				<p>Updates are signed with the publisher's key, and security fixes install themselves. Two-factor login, a strict Content Security Policy and an integrity check of the core files.</p>
+				<p>Updates are signed with the publisher's key, and security fixes install themselves. Two-factor login, a strict Content Security Policy in the administration and an integrity check of the core files.</p>
 			</article>
 			<article>
 				<h3>No plug-in marketplace</h3>
-				<p>Extensions are a closed, curated set. You switch them on in the settings – you install nothing from outside sources, nothing breaks after an update and no third-party code reaches your site.</p>
+				<p>Extensions are a closed, curated set. You switch them on in the administration on the Extensions page – you install nothing from outside sources, nothing breaks after an update and no third-party code reaches your site.</p>
 			</article>
 			<article>
 				<h3>Reader privacy</h3>

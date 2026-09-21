@@ -19,7 +19,7 @@ $stranka['popis'] = 'Wie phpRS Websites schützt: signierte Aktualisierungen, au
 			<h2>Was danach geschieht</h2>
 			<ol class="kroky kroky-male">
 				<li>Die Korrektur erscheint als <strong>Sicherheitsversion</strong>.</li>
-				<li>Websites mit eingeschalteter Automatik <strong>installieren sie innerhalb von 12 Stunden selbst</strong> – nach einem Backup der Datenbank und der Prüfung der Signatur.</li>
+				<li>Websites mit eingeschalteter Automatik <strong>installieren sie innerhalb von 12 Stunden selbst</strong> – nach einem Backup der Datenbank und der Prüfung der Signatur. Kann der Server das nicht (kein <code>zip</code> oder <code>sodium</code>, Dateien nicht beschreibbar), erhält der Administrator zumindest eine E-Mail.</li>
 				<li>Der Administrator erhält eine E-Mail. Wer die Automatik ausgeschaltet hat, sieht einen Hinweis und aktualisiert mit einer Schaltfläche.</li>
 			</ol>
 		</div>
@@ -43,7 +43,7 @@ $stranka['popis'] = 'Wie phpRS Websites schützt: signierte Aktualisierungen, au
 	<div class="obal">
 		<div class="skupina-hlava">
 			<h2>Standardeinstellungen</h2>
-			<p>Sicheres Verhalten ist keine Option in den Einstellungen. Es ist ab der Installation eingeschaltet.</p>
+			<p>Sicheres Verhalten ist keine Option in den Einstellungen. Es ist ab der Installation eingeschaltet – nur die Zwei-Faktor-Anmeldung schaltet jedes Konto selbst ein, der Systemstatus erinnert daran.</p>
 		</div>
 		<dl class="funkce">
 			<div><dt>Zwei-Faktor-Anmeldung</dt><dd>TOTP mit Ersatzcodes. Der Systemstatus weist auf Administratoren hin, die sie nicht nutzen.</dd></div>

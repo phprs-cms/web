@@ -20,7 +20,7 @@ $stranka['popis'] = 'Die Philosophie von phpRS: Einfachheit vor Abstraktion, ges
 
 		<h2>Privatsphäre der Leser</h2>
 		<p>Die Besucherstatistik ist eine eigene, ohne Cookies und ohne Speicherung von IP-Adressen. Eingebettete Videos und Beiträge aus sozialen Netzwerken laden erst nach einem Klick. Der Spamschutz kommt ohne fremde Dienste aus. Eine Website mit phpRS lässt sich ohne Cookie-Banner betreiben.</p>
-		<p>Auf Websites, die mit phpRS laufen, erscheint die Marke phpRS nicht. Es ist Ihre Website.</p>
+		<p>Das phpRS-Logo kommt nie auf Ihre Website. In der Fußzeile der Vorlagen steht nur der dezente Hinweis „läuft mit phpRS“, den Sie in der Vorlage löschen können. Es ist Ihre Website.</p>
 
 		<h2>Herkunft</h2>
 		<p>phpRS knüpft dem Namen nach an das tschechische Redaktionssystem phpRS der Jahre 2001–2007 an, ist aber von Grund auf neu geschrieben und nicht damit kompatibel.</p>

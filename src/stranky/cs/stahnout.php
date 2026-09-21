@@ -30,8 +30,8 @@ $stranka['popis'] = 'Stažení phpRS, požadavky na hosting a instalace ve čty�
 				<tbody>
 					<tr><th scope="row">PHP</th><td>8.4 nebo novější</td></tr>
 					<tr><th scope="row">Databáze</th><td>MySQL 8 nebo MariaDB 10.6 a novější</td></tr>
-					<tr><th scope="row">Rozšíření PHP</th><td><code>pdo_mysql</code>, <code>mbstring</code>, <code>gd</code> (zpracování obrázků)</td></tr>
-					<tr><th scope="row">Doporučená rozšíření</th><td><code>zip</code> a <code>sodium</code> (aktualizace z administrace), <code>exif</code>, <code>intl</code>, <code>curl</code></td></tr>
+					<tr><th scope="row">Rozšíření PHP</th><td><code>pdo_mysql</code>, <code>mbstring</code>, <code>gd</code> (zpracování obrázků; instalátor ho nevyžaduje, ale bez něj nejdou nahrávat obrázky)</td></tr>
+					<tr><th scope="row">Doporučená rozšíření</th><td><code>zip</code> a <code>sodium</code> (aktualizace z administrace), <code>exif</code>, <code>intl</code>, <code>curl</code>, <code>openssl</code> (Web Push, přihlašovací klíče), <code>zlib</code> a <code>ftp</code> (zálohy)</td></tr>
 					<tr><th scope="row">Webový server</th><td>Apache nebo LiteSpeed (pravidla jsou v balíčku); nginx s vlastní konfigurací</td></tr>
 				</tbody>
 			</table></div>

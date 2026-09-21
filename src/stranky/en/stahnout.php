@@ -30,8 +30,8 @@ $stranka['popis'] = 'Downloading phpRS, hosting requirements and installation in
 				<tbody>
 					<tr><th scope="row">PHP</th><td>8.4 or newer</td></tr>
 					<tr><th scope="row">Database</th><td>MySQL 8 or MariaDB 10.6 and newer</td></tr>
-					<tr><th scope="row">PHP extensions</th><td><code>pdo_mysql</code>, <code>mbstring</code>, <code>gd</code> (image processing)</td></tr>
-					<tr><th scope="row">Recommended extensions</th><td><code>zip</code> and <code>sodium</code> (updates from the administration), <code>exif</code>, <code>intl</code>, <code>curl</code></td></tr>
+					<tr><th scope="row">PHP extensions</th><td><code>pdo_mysql</code>, <code>mbstring</code>, <code>gd</code> (image processing; the installer does not require it, but images cannot be uploaded without it)</td></tr>
+					<tr><th scope="row">Recommended extensions</th><td><code>zip</code> and <code>sodium</code> (updates from the administration), <code>exif</code>, <code>intl</code>, <code>curl</code>, <code>openssl</code> (Web Push, passkeys), <code>zlib</code> and <code>ftp</code> (backups)</td></tr>
 					<tr><th scope="row">Web server</th><td>Apache or LiteSpeed (the rules are in the package); nginx with your own configuration</td></tr>
 				</tbody>
 			</table></div>

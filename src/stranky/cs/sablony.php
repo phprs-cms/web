@@ -36,7 +36,7 @@ $sablony = [
 		</div>
 		<div>
 			<h2>S pomocí Claude</h2>
-			<p>Přes napojení MCP může šablonu podle vašeho popisu napsat Claude. Každá vlastní šablona prochází kontrolou, která nepovolí práci se soubory, sítí ani spouštění procesů – ať ji psal kdokoli.</p>
+			<p>Přes napojení MCP může šablonu podle vašeho popisu napsat Claude. Každý soubor, který Claude uloží, prochází kontrolou, která nepovolí práci se soubory, sítí ani spouštění procesů.</p>
 		</div>
 	</div>
 </section>

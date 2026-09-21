@@ -36,7 +36,7 @@ $sablony = [
 		</div>
 		<div>
 			<h2>Mit Hilfe von Claude</h2>
-			<p>Über die MCP-Anbindung kann Claude die Vorlage nach Ihrer Beschreibung schreiben. Jede eigene Vorlage durchläuft eine Prüfung, die weder Zugriff auf Dateien und Netzwerk noch das Starten von Prozessen zulässt – egal, wer sie geschrieben hat.</p>
+			<p>Über die MCP-Anbindung kann Claude die Vorlage nach Ihrer Beschreibung schreiben. Jede Datei, die Claude speichert, durchläuft eine Prüfung, die weder Zugriff auf Dateien und Netzwerk noch das Starten von Prozessen zulässt.</p>
 		</div>
 	</div>
 </section>

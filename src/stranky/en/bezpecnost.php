@@ -19,7 +19,7 @@ $stranka['popis'] = 'How phpRS protects websites: signed updates, automatic secu
 			<h2>What happens next</h2>
 			<ol class="kroky kroky-male">
 				<li>The fix comes out as a <strong>security release</strong>.</li>
-				<li>Sites with automatic updates switched on <strong>install it themselves</strong> within 12 hours – after a database backup and signature verification.</li>
+				<li>Sites with automatic updates switched on <strong>install it themselves</strong> within 12 hours – after a database backup and signature verification. If the server cannot do it (no <code>zip</code> or <code>sodium</code>, files not writable), the administrator at least gets an e-mail.</li>
 				<li>The administrator gets an e-mail. Those who have automatic updates switched off see a notice and update with one button.</li>
 			</ol>
 		</div>
@@ -43,7 +43,7 @@ $stranka['popis'] = 'How phpRS protects websites: signed updates, automatic secu
 	<div class="obal">
 		<div class="skupina-hlava">
 			<h2>Default settings</h2>
-			<p>Secure behaviour is not an option in the settings. It is on from the moment of installation.</p>
+			<p>Secure behaviour is not an option in the settings. It is on from the moment of installation – only two-factor login is switched on by each account, and System status keeps reminding you.</p>
 		</div>
 		<dl class="funkce">
 			<div><dt>Two-factor login</dt><dd>TOTP with backup codes. System status points out any administrator who does not have it.</dd></div>
