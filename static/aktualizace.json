@@ -1,14 +1,16 @@
 {
-    "verze": "3.0.0-beta.5",
+    "verze": "3.0.0-beta.6",
     "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.5/phprs-3.0.0-beta.5.zip",
-    "sha256": "5a4da05a8d6efecf66f19eb785be784a01441912f4edd310c5c8b52385e2cdbf",
-    "podpis": "FAFpHzmOFaMOAM1cq8LemiXM+9bBHEBi72altY3o7XdHyuQBFGO+dk3yZiaB7B74vxkHpJp1Dh+YPFg94QNeAQ==",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.6/phprs-3.0.0-beta.6.zip",
+    "sha256": "e24e7dae6b2d4854b7b731a170631d2ccd097d1fa0140363ccaab7c0274b5caa",
+    "podpis": "/J/+3+sHmlagwV9c88L5Ic001O6NtZG7RkQVgQAPg351YuTJ4Ezzctw/uubApclD0Nm+kLn5u7QoRfz8VCXxCw==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Přihlašovací klíče (passkeys): otisk prstu, Face ID, Windows Hello nebo bezpečnostní klíč místo opisování kódu z aplikace. Přidávají se v Můj účet u zapnutého dvoufázového přihlášení.",
-        "Rozšíření jsou samostatná položka hlavní nabídky."
+        "Oprava: na některých hostinzích končily na subdoméně odkazy na články, rubriky a hledání chybou 500.",
+        "Uživatelé: oprávnění shrnutá jednou větou ve výpisu i nad formulářem.",
+        "Příjmy: předplatné, dobrovolná podpora, reklama a newsletter na jedné obrazovce.",
+        "Datum podle jazyka webu a nadpis nového bloku ve výchozím jazyce webu."
     ]
 }
