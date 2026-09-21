@@ -1,16 +1,17 @@
 {
-    "verze": "3.0.0-beta.6",
+    "verze": "3.0.0-beta.7",
     "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.6/phprs-3.0.0-beta.6.zip",
-    "sha256": "e24e7dae6b2d4854b7b731a170631d2ccd097d1fa0140363ccaab7c0274b5caa",
-    "podpis": "/J/+3+sHmlagwV9c88L5Ic001O6NtZG7RkQVgQAPg351YuTJ4Ezzctw/uubApclD0Nm+kLn5u7QoRfz8VCXxCw==",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.7/phprs-3.0.0-beta.7.zip",
+    "sha256": "9524b3c2e0bff05b49b023b84f61928498fad09fb59b986653e626539cd7e681",
+    "podpis": "Bp612RJFdXmO+Hni54Nvlc/X/6a+LmKEx3ratTXbPEVmhb7zhDyHLV7NbudBf8GAfx9kHxx1hW984b5sNdSUDw==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Oprava: na některých hostinzích končily na subdoméně odkazy na články, rubriky a hledání chybou 500.",
-        "Uživatelé: oprávnění shrnutá jednou větou ve výpisu i nad formulářem.",
-        "Příjmy: předplatné, dobrovolná podpora, reklama a newsletter na jedné obrazovce.",
-        "Datum podle jazyka webu a nadpis nového bloku ve výchozím jazyce webu."
+        "Šablona článku (Standardní, Dlouhé čtení, Fotoreportáž, Rozhovor) je první volbou formuláře článku.",
+        "Cesty v hláškách a ve Stavu systému jsou odkazy – např. hláška o nové verzi vede přímo na aktualizaci.",
+        "Hlášky administrace se překládají do slovenštiny, angličtiny a němčiny.",
+        "Komentáře ukládají místo IP adresy jen otisk; dřív uložené adresy se mažou.",
+        "Opravy: Ctrl+K v editoru, titulní strana a jazykové verze, e-maily ke korektuře v podrubrikách, přílohy v Médiích, stránkování dialogu Médií, stavy předávky v redakčním kalendáři."
     ]
 }
