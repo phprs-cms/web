@@ -1,17 +1,14 @@
 {
-    "verze": "3.0.0-beta.4",
+    "verze": "3.0.0-beta.5",
     "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.4/phprs-3.0.0-beta.4.zip",
-    "sha256": "1062b6779ed2eadba19e7fadf140147ec73729975b3d2350286bd4c634442129",
-    "podpis": "xv4EECXJ8n2qEsKn2cF0hh4hfGgpMciIvpooJP94DXWyjaRYeeGQQhpyR+38ykB0zwlXt2RWbgprHWNiKH2WBw==",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.5/phprs-3.0.0-beta.5.zip",
+    "sha256": "5a4da05a8d6efecf66f19eb785be784a01441912f4edd310c5c8b52385e2cdbf",
+    "podpis": "FAFpHzmOFaMOAM1cq8LemiXM+9bBHEBi72altY3o7XdHyuQBFGO+dk3yZiaB7B74vxkHpJp1Dh+YPFg94QNeAQ==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Vestavěné šablony jsou tři: třísloupcová Klasická odchází, weby, které ji používaly, se samy přepnou na Classic Newspaper.",
-        "Web v dalších jazycích: přeložené hlášky a e-maily pro čtenáře, prohlížeč fotek, oznámení a názvy bloků.",
-        "Úklid administrace a šablon: čitelnější tmavý režim, opravy na telefonu, červená jen u mazání, jednotné popisky.",
-        "Šablona Minimal dostala chybějící styly hodnocení, komentářů a anket.",
-        "Aktualizace po sobě uklidí soubory, které nové vydání už neobsahuje."
+        "Přihlašovací klíče (passkeys): otisk prstu, Face ID, Windows Hello nebo bezpečnostní klíč místo opisování kódu z aplikace. Přidávají se v Můj účet u zapnutého dvoufázového přihlášení.",
+        "Rozšíření jsou samostatná položka hlavní nabídky."
     ]
 }
