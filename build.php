@@ -133,8 +133,29 @@ $osnova = json_decode((string) file_get_contents("$cms/docs/prirucka/osnova.json
 $mapa = [];
 $pocet = 0;
 
+// texty všech jazyků předem - přepínač jazyků potřebuje znát adresu téže stránky v ostatních jazycích
+$texty = [];
+foreach (array_keys($web['jazyky']) as $jazyk) {
+    $texty[$jazyk] = require KOREN . "/src/texty/$jazyk.php";
+}
+
+/** Adresa produktové stránky v daném jazyce ('' = úvod). */
+$adresaStranky = static function (string $jazyk, string $adresa) use ($texty): string {
+    return "/$jazyk/" . ($adresa === '' ? '' : ($texty[$jazyk]['adresy'][$adresa] ?? $adresa) . '/');
+};
+/** Adresa stránky příručky: části cesty se překládají podle osnova.json ("adresy"), soubory se jmenují ve všech jazycích stejně. */
+$adresaPrirucky = static function (string $jazyk, string $cesta) use ($texty, $osnova): string {
+    $zaklad = "/$jazyk/" . $texty[$jazyk]['adresa_dokumentace'] . '/';
+    if ($cesta === 'index') {
+        return $zaklad;
+    }
+    $preklad = $osnova['adresy'][$jazyk] ?? [];
+
+    return $zaklad . implode('/', array_map(static fn (string $c): string => $preklad[$c] ?? $c, explode('/', $cesta))) . '/';
+};
+
 foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
-    $t = require KOREN . "/src/texty/$jazyk.php";
+    $t = $texty[$jazyk];
     $spolecne = ['web' => $web, 't' => $t, 'jazyk' => $jazyk, 'otisk' => $otisk, 'logo' => $logo];
 
     // produktové stránky: src/stranky/<jazyk>/<adresa>.php, index.php = úvod
@@ -149,8 +170,14 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
             require $soubor;
         })();
         $obsah = (string) ob_get_clean();
-        $url = "/$jazyk/" . ($adresa === '' ? '' : "$adresa/");
-        zapis($url . 'index.html', sablona('stranka', $spolecne + ['stranka' => $stranka, 'obsah' => $obsah, 'url' => $url, 'adresa' => $adresa]));
+        $url = $adresaStranky($jazyk, $adresa);
+        $jinde = [];
+        foreach (array_keys($web['jazyky']) as $j) {
+            if (is_file(KOREN . "/src/stranky/$j/" . ($adresa === '' ? 'index' : $adresa) . '.php')) {
+                $jinde[$j] = $adresaStranky($j, $adresa);
+            }
+        }
+        zapis($url . 'index.html', sablona('stranka', $spolecne + ['stranka' => $stranka, 'obsah' => $obsah, 'url' => $url, 'adresa' => $adresa, 'jinde' => $jinde]));
         $mapa[] = $url;
         $pocet++;
     }
@@ -160,8 +187,8 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
     if (!is_dir($koren)) {
         continue;
     }
-    $zaklad = "/$jazyk/" . $t['adresa_dokumentace'] . '/';
-    $odkaz = static function (string $cil, string $zdroj) use ($zaklad): string {
+    $zaklad = $adresaPrirucky($jazyk, 'index');
+    $odkaz = static function (string $cil, string $zdroj) use ($jazyk, $adresaPrirucky): string {
         if (preg_match('#^(https?:|mailto:|/|\#)#', $cil)) {
             return $cil;
         }
@@ -174,9 +201,8 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
                 $casti[] = $cast;
             }
         }
-        $casti = $casti === ['index'] ? [] : $casti;
 
-        return $zaklad . ($casti === [] ? '' : implode('/', $casti) . '/') . ($kotva !== '' ? "#$kotva" : '');
+        return $adresaPrirucky($jazyk, $casti === [] || $casti === ['index'] ? 'index' : implode('/', $casti)) . ($kotva !== '' ? "#$kotva" : '');
     };
 
     // nejdřív všechny stránky převést (kvůli titulkům v navigaci), potom vykreslit
@@ -192,7 +218,7 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
         }
         $md = new Markdown(static fn (string $cil): string => $odkaz($cil, $cesta));
         $html = $md->preved((string) file_get_contents("$koren/$cesta.md"));
-        $stranky[$cesta] = ['titulek' => $md->titulek, 'html' => $html, 'nadpisy' => $md->nadpisy, 'url' => $cesta === 'index' ? $zaklad : "$zaklad$cesta/", 'oddily' => $md->oddily];
+        $stranky[$cesta] = ['titulek' => $md->titulek, 'html' => $html, 'nadpisy' => $md->nadpisy, 'url' => $adresaPrirucky($jazyk, $cesta), 'oddily' => $md->oddily];
     }
     $navigace = [];
     foreach ($osnova['kapitoly'] as $kapitola) {
@@ -217,8 +243,14 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
             'dalsi' => isset($rada[$i + 1]) ? $stranky[$rada[$i + 1]] : null,
             'zaklad' => $zaklad,
         ]);
+        $jinde = [];
+        foreach (array_keys($web['jazyky']) as $j) {
+            if (is_dir("$cms/docs/prirucka/$j")) {
+                $jinde[$j] = $adresaPrirucky($j, is_file("$cms/docs/prirucka/$j/$cesta.md") ? $cesta : 'index');
+            }
+        }
         $stranka = ['titulek' => $s['titulek'] . ' – ' . $t['dokumentace'], 'popis' => mb_substr(trim(strip_tags($s['oddily'][0]['text'] ?? '')), 0, 160), 'trida' => 'je-dokumentace'];
-        zapis($s['url'] . 'index.html', sablona('stranka', $spolecne + ['stranka' => $stranka, 'obsah' => $doc, 'url' => $s['url'], 'adresa' => $t['adresa_dokumentace']]));
+        zapis($s['url'] . 'index.html', sablona('stranka', $spolecne + ['stranka' => $stranka, 'obsah' => $doc, 'url' => $s['url'], 'adresa' => 'dokumentace', 'jinde' => $jinde]));
         $mapa[] = $s['url'];
         $pocet++;
         foreach ($s['oddily'] as $oddil) {
@@ -229,12 +261,12 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
 }
 
 // stránka 404 ve výchozím jazyce
-$t = require KOREN . "/src/texty/{$web['vychozi_jazyk']}.php";
-zapis('404.html', sablona('stranka', ['web' => $web, 't' => $t, 'jazyk' => $web['vychozi_jazyk'], 'otisk' => $otisk, 'logo' => $logo, 'url' => '/404.html', 'adresa' => '404',
+$t = $texty[$web['vychozi_jazyk']];
+zapis('404.html', sablona('stranka', ['jinde' => [], 'web' => $web, 't' => $t, 'jazyk' => $web['vychozi_jazyk'], 'otisk' => $otisk, 'logo' => $logo, 'url' => '/404.html', 'adresa' => '404',
     'stranka' => ['titulek' => $t['nenalezeno'], 'popis' => '', 'trida' => ''],
     'obsah' => '<section class="zahlavi"><div class="obal"><h1>' . e($t['nenalezeno']) . '</h1><p class="perex">' . e($t['nenalezeno_text']) . '</p><p class="tlacitka"><a class="tl" href="/' . $web['vychozi_jazyk'] . '/">' . e($t['nenalezeno_domu']) . '</a></p></div></section>']));
 
-// kořen webu: dokud je jediný jazyk, vede rovnou na něj
+// kořen webu: na hostingu rozhoduje .htaccess podle jazyka prohlížeče, tenhle soubor je záloha bez něj
 $vychozi = $web['vychozi_jazyk'];
 zapis('index.html', '<!doctype html><html lang="' . $vychozi . '"><meta charset="utf-8"><title>phpRS</title><meta http-equiv="refresh" content="0; url=/' . $vychozi . '/"><link rel="canonical" href="' . $web['adresa'] . '/' . $vychozi . '/"><p><a href="/' . $vychozi . '/">phpRS</a></p></html>' . "\n");
 

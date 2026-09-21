@@ -4,10 +4,11 @@
  *
  * @var array $web @var array $t @var string $jazyk @var string $otisk @var string $logo
  * @var array{titulek:string,popis:string,trida:string} $stranka @var string $obsah @var string $url @var string $adresa
+ * @var array<string,string> $jinde adresa téže stránky v ostatních jazycích (kód jazyka => adresa)
  */
 $titulek = $stranka['titulek'] === '' ? 'phpRS' : $stranka['titulek'] . ' – phpRS';
 $dok = $t['adresa_dokumentace'];
-$cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ? $dok : $kam) . '/';
+$cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ? $dok : ($t['adresy'][$kam] ?? $kam)) . '/';
 ?>
 <!doctype html>
 <html lang="<?= e($jazyk) ?>">
@@ -19,6 +20,12 @@ $cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ?
 <meta name="description" content="<?= e($stranka['popis']) ?>">
 <?php endif ?>
 <link rel="canonical" href="<?= e($web['adresa'] . $url) ?>">
+<?php if (count($jinde) > 1): ?>
+<?php foreach ($jinde as $kod => $adresaJinde): ?>
+<link rel="alternate" hreflang="<?= e($kod) ?>" href="<?= e($web['adresa'] . $adresaJinde) ?>">
+<?php endforeach ?>
+<link rel="alternate" hreflang="x-default" href="<?= e($web['adresa'] . ($jinde[$web['vychozi_jazyk']] ?? $url)) ?>">
+<?php endif ?>
 <meta property="og:title" content="<?= e($titulek) ?>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<?= e($web['adresa'] . $url) ?>">
@@ -38,9 +45,16 @@ $cil = static fn (string $kam): string => "/$jazyk/" . ($kam === 'dokumentace' ?
 		<button class="menu-tl" type="button" aria-expanded="false" aria-controls="menu" data-menu><?= e($t['menu_tlacitko']) ?></button>
 		<nav class="menu" id="menu" aria-label="<?= e($t['hlavni_navigace']) ?>">
 <?php foreach ($t['menu'] as $kam => $popisek): ?>
-			<a href="<?= e($cil($kam)) ?>"<?= $adresa === ($kam === 'dokumentace' ? $dok : $kam) ? ' aria-current="page"' : '' ?>><?= e($popisek) ?></a>
+			<a href="<?= e($cil($kam)) ?>"<?= $adresa === $kam ? ' aria-current="page"' : '' ?>><?= e($popisek) ?></a>
 <?php endforeach ?>
 			<a class="tl tl-maly" href="<?= e($cil('stahnout')) ?>"><?= e($t['stahnout']) ?></a>
+<?php if (count($jinde) > 1): ?>
+			<span class="jazyky" role="group" aria-label="<?= e($t['jazyk_webu']) ?>">
+<?php foreach ($jinde as $kod => $adresaJinde): ?>
+				<a href="<?= e($adresaJinde) ?>" lang="<?= e($kod) ?>" hreflang="<?= e($kod) ?>" title="<?= e($web['jazyky'][$kod]) ?>"<?= $kod === $jazyk ? ' aria-current="true"' : '' ?>><?= e(strtoupper($kod)) ?></a>
+<?php endforeach ?>
+			</span>
+<?php endif ?>
 			<button class="rezim" type="button" data-rezim aria-label="<?= e($t['rezim']) ?>" title="<?= e($t['rezim']) ?>"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3Z"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
 		</nav>
 	</div>

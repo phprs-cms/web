@@ -7,6 +7,7 @@ return [
     'preskocit' => 'Přeskočit na obsah',
     'hlavni_navigace' => 'Hlavní navigace',
     'menu_tlacitko' => 'Nabídka',
+    'jazyk_webu' => 'Jazyk webu',
     'rezim' => 'Přepnout světlý a tmavý režim',
     'paticka_veta' => 'Redakční systém pro magazíny, noviny a blogy. Svobodný software pod licencí GNU GPL v2.',
     'paticka_projekt' => 'Projekt',

@@ -33,7 +33,7 @@ Hodnota `null` v `src/web.php` znamená „zatím není“ – stránky pak nic 
 
 ## Jazyky
 
-Zdrojový jazyk je čeština. Další jazyk = řádek v `jazyky` v `src/web.php`, soubor `src/texty/<kód>.php`, složka `src/stranky/<kód>/` a překlad příručky v repozitáři CMS. Překládá se až po schválení českých textů.
+Čeština (zdroj), angličtina a němčina. Soubory stránek se ve všech jazycích jmenují stejně (česky); adresy na webu překládá klíč `adresy` v `src/texty/<kód>.php`, adresy příručky klíč `adresy` v `osnova.json` repozitáře CMS. Každá stránka nese `hreflang` a přepínač jazyků vede na tutéž stránku. Kořen webu přesměruje `static/.htaccess` podle jazyka prohlížeče (cs/sk → čeština, de → němčina, jinak angličtina). Mění-li se český text, upravte i en a de.
 
 ## Soubor pro aktualizace CMS
 
@@ -52,7 +52,7 @@ Subdomény jsou na Blueboardu sourozenecké složky vedle `www` (`demo` = demo.p
 
 ## Snímky obrazovek
 
-`assets/img/snimky/` zatím **není v repozitáři**: pracovní snímky obsahují testovací obsah. Do repozitáře přijdou s finálním ukázkovým magazínem (vlastní nebo volně licencované fotografie, smyšlená jména). Chybějící snímek sestavení nezastaví – stránka se vykreslí bez něj.
+`assets/img/snimky/` – pořizují se z běžící instance CMS skriptem `tools/snimky.sh` (bezhlavý Chrome, světlý i tmavý režim). Ukázkový magazín „Pražský kurýr“ je smyšlený: jména autorů jsou vymyšlená a obrázky článků jsou vlastní ilustrace vytvořené pro tento projekt, takže snímky nenesou žádná cizí práva. Chybějící snímek sestavení nezastaví – stránka se vykreslí bez něj. Zatím chybí snímek vizuálního editoru bloků (`web-bloky`).
 
 ## Zásady
 

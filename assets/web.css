@@ -147,6 +147,10 @@ code { font: .88em var(--mono); background: var(--kod-bg); padding: .12em .38em;
 .menu > a:not(.tl) { font: 600 .97rem var(--nadpisy); color: var(--text); text-decoration: none; padding-block: .4rem; border-bottom: 2px solid transparent; }
 .menu > a:not(.tl):hover { border-bottom-color: var(--linka); }
 .menu > a[aria-current="page"] { border-bottom-color: var(--znacka); }
+.jazyky { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--linka); border-radius: 10px; }
+.jazyky a { font: 650 .78rem/1 var(--nadpisy); letter-spacing: .04em; text-decoration: none; color: var(--tlumeny); padding: .5rem .55rem; border-radius: 7px; }
+.jazyky a:hover { color: var(--text); }
+.jazyky a[aria-current] { background: var(--kod-bg); color: var(--text); }
 .rezim { display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 10px; border: 1px solid var(--linka); background: transparent; color: var(--text); cursor: pointer; }
 .rezim:hover { background: var(--plocha); }
 .menu-tl { display: none; font: 600 .95rem var(--nadpisy); padding: .55em 1em; border-radius: 10px; border: 1px solid var(--linka); background: transparent; color: var(--text); cursor: pointer; }
@@ -158,6 +162,7 @@ code { font: .88em var(--mono); background: var(--kod-bg); padding: .12em .38em;
 	.menu > a:not(.tl) { padding-block: .85rem; border-bottom: 1px solid var(--linka); }
 	.menu > a[aria-current="page"] { border-bottom-color: var(--linka); color: var(--odkaz); }
 	.menu .tl { margin-top: 1rem; }
+	.menu .jazyky { margin-top: 1rem; align-self: flex-start; }
 	.menu .rezim { margin-top: .75rem; }
 }
 
