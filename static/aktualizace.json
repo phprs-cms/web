@@ -1,16 +1,17 @@
 {
-    "verze": "3.0.0-beta.3",
+    "verze": "3.0.0-beta.4",
     "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.3/phprs-3.0.0-beta.3.zip",
-    "sha256": "5225d25ee85caa1a2dd2747325520c8965bbdf55a98054e922cf722aa1cbd235",
-    "podpis": "F6KSD1AsVSDa0M+QSHptvDVP6YzNwaTVYnLvxR2tSqOVxVOs2WagGfd3aXSJxzuDyoCeWh1H+82ybc7+VWSQBA==",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.4/phprs-3.0.0-beta.4.zip",
+    "sha256": "1062b6779ed2eadba19e7fadf140147ec73729975b3d2350286bd4c634442129",
+    "podpis": "xv4EECXJ8n2qEsKn2cF0hh4hfGgpMciIvpooJP94DXWyjaRYeeGQQhpyR+38ykB0zwlXt2RWbgprHWNiKH2WBw==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Zapomenuté heslo do administrace jde obnovit odkazem z e-mailu (platí hodinu, jednorázový, dvoufázové přihlášení zůstává).",
-        "Aktualizace po sobě uklidí soubory, které nové vydání už neobsahuje.",
-        "Název a popis webu lze vyplnit zvlášť pro každou jazykovou verzi.",
-        "Chybové hlášky aktualizací jsou přeložené do slovenštiny, angličtiny a němčiny."
+        "Vestavěné šablony jsou tři: třísloupcová Klasická odchází, weby, které ji používaly, se samy přepnou na Classic Newspaper.",
+        "Web v dalších jazycích: přeložené hlášky a e-maily pro čtenáře, prohlížeč fotek, oznámení a názvy bloků.",
+        "Úklid administrace a šablon: čitelnější tmavý režim, opravy na telefonu, červená jen u mazání, jednotné popisky.",
+        "Šablona Minimal dostala chybějící styly hodnocení, komentářů a anket.",
+        "Aktualizace po sobě uklidí soubory, které nové vydání už neobsahuje."
     ]
 }
