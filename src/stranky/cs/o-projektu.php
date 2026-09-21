@@ -20,7 +20,7 @@ $stranka['popis'] = 'Filozofie phpRS: jednoduchost nad abstrakcí, uzavřená ro
 
 		<h2>Soukromí čtenářů</h2>
 		<p>Statistika návštěvnosti je vlastní, bez cookies a bez ukládání IP adres. Vložená videa a příspěvky ze sociálních sítí se načtou až po kliknutí. Antispam se obejde bez cizích služeb. Web na phpRS jde provozovat bez cookie lišty.</p>
-		<p>Logo phpRS se na váš web nedává. V patičce šablon je jen nenápadná zmínka „běží na phpRS“, kterou si v šabloně můžete smazat. Je to váš web.</p>
+		<p>Logo phpRS se na váš web nedává. V patičce vestavěných šablon je jen nenápadná zmínka „běží na phpRS“. Je to váš web.</p>
 
 		<h2>Původ</h2>
 		<p>phpRS navazuje jménem na český redakční systém phpRS z let 2001–2007. Je ale napsaný od nuly a s původním systémem není kompatibilní.</p>

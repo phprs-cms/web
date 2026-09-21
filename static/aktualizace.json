@@ -1,16 +1,16 @@
 {
-    "verze": "3.0.0-beta.8",
+    "verze": "3.0.0-rc.1",
     "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.8/phprs-3.0.0-beta.8.zip",
-    "sha256": "6777485c7b9bd579b1839f2929465b3f081c5fd45b28bfa700e847dfcc9db9fd",
-    "podpis": "L2qIAyZyLqL5allfn5Zn1tT9zB5PfitzK8mgsn/a902lOTEwR15hW1ObUBNknFZqr3LswfXzFyH4jiIaJgSnAA==",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-rc.1/phprs-3.0.0-rc.1.zip",
+    "sha256": "545d0c8827ea0eab6fbd62e0e0b3379db5c6551c3ff269e58917d0c3b046bafc",
+    "podpis": "Vu99IY3EMU0kV4PYVTtzHFztunj1WNludvA/ccmLdvvtyh5pYh7y4OOCnO31xfRyLsLgmwiqfpTwCtImEjuCDg==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Import z WordPressu (články, rubriky, štítky, stránky, komentáře, obrázky, přesměrování starých adres) a export celého webu v otevřeném formátu",
-        "Příručka je kompletní v češtině, angličtině a němčině",
-        "Opravy: formulář bloku mazal jazykovou verzi, jazyk článku přes MCP, adresy v oznámeních podle jazyka článku, přesun bloků při přepnutí šablony, úprava konceptu v náhledu",
-        "Úklid souborů po zrušené šabloně default"
+        "Předplatné přes Stripe: čtenář zaplatí na stránce Stripe, web předplatné sám zapne a prodlužuje, zrušení a změna karty v portálu Stripe",
+        "Nastavení → Čtenáři a platby: vlastní záložka pro registrace, zamčený obsah a platby",
+        "Nápověda k obrazovce: tlačítko u nadpisu nabídne související stránky příručky",
+        "Kandidát na ostrou verzi 3.0.0"
     ]
 }

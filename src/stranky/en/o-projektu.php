@@ -20,7 +20,7 @@ $stranka['popis'] = 'The philosophy of phpRS: simplicity over abstraction, a clo
 
 		<h2>Reader privacy</h2>
 		<p>Traffic statistics are built in, with no cookies and no storing of IP addresses. Embedded videos and social media posts load only after a click. The antispam works without third-party services. A site on phpRS can be run without a cookie banner.</p>
-		<p>The phpRS logo is never put on your site. The template footers carry only a discreet “powered by phpRS” note, which you can delete in the template. It is your site.</p>
+		<p>The phpRS logo is never put on your site. The footers of the built-in templates carry only a discreet “powered by phpRS” note. It is your site.</p>
 
 		<h2>Origin</h2>
 		<p>phpRS takes its name from the Czech content management system phpRS of 2001–2007, but it is written from scratch and is not compatible with the original system.</p>
