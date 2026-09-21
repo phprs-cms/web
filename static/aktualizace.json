@@ -1,0 +1,17 @@
+{
+    "verze": "3.0.0-beta.2",
+    "vydano": "2026-09-21",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.2/phprs-3.0.0-beta.2.zip",
+    "sha256": "f388194aaad506188fe491e52c65f4525f71f0970694c63401ba9e2eeea8dacd",
+    "podpis": "rnbibknBkxKM18q4y4dZUlvghxo6bAa40U4JP0/rav1pJ0/6IVnVJoAoXT+Jr9yrfGoOi9MVoHrs/VHXpYqPAQ==",
+    "klic": "d1943e4d",
+    "min_php": "8.4",
+    "bezpecnostni": false,
+    "zmeny": [
+        "Ukázkový obsah: smyšlený magazín jde nahrát při instalaci nebo v Nastavení → Základní a jedním kliknutím smazat.",
+        "Nápověda v administraci: patička na každé stránce a odkazy do příručky na phprs.eu.",
+        "Instalátor se po dokončení smaže sám.",
+        "Prostředí systému používá písmo Noto Sans.",
+        "Dopřeložená administrace ve slovenštině, angličtině a němčině."
+    ]
+}

@@ -12,7 +12,7 @@ return [
     'stranky' => ['', 'funkce', 'sablony', 'stahnout', 'podporit', 'bezpecnost', 'o-projektu', 'soukromi'],
     'sponsors' => 'https://github.com/sponsors/phprscms',
     'github' => 'https://github.com/phprs-cms',
-    'stahnout_url' => null,             // adresa ZIPu posledního vydání; null = veřejná beta se připravuje
-    'demo_url' => null,                 // https://demo.phprs.eu, až poběží
+    'stahnout_url' => 'https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.2/phprs-3.0.0-beta.2.zip', // ZIP posledního vydání; null = veřejná beta se připravuje
+    'demo_url' => 'https://demo.phprs.eu',
     'email' => 'info@phprs.eu',
 ];
