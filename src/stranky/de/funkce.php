@@ -35,6 +35,7 @@ $skupiny = [
         'Kommentare mit Moderation' => 'Spamschutz ohne Cookies und ohne fremde Dienste.',
         'Registrierung ohne Passwort' => 'Der Leser registriert sich nur mit seiner E-Mail-Adresse; das Passwort setzt er über einen Link, oder er meldet sich mit einem Einmal-Link an. Gespeicherte Artikel, Newsletter-Abo, Kommentare unter eigenem Konto.',
         'Gesperrte Inhalte und weiche Paywall' => 'Ein Teil der Inhalte nur für Angemeldete oder Abonnenten; einige gesperrte Artikel pro Monat können kostenlos sein.',
+        'Abonnements über Stripe' => 'Der Leser zahlt per Karte auf einer Stripe-Seite, die Website schaltet das Abonnement selbst frei und verlängert es; Kündigung und Kartenwechsel erledigt er im Stripe-Portal. Kartendaten erreichen Ihre Website nie. Von Hand können Sie ein Abonnement weiterhin jedem eintragen.',
         'Newsletter' => 'Manuelle und automatische Auswahl neuer Artikel, für jede Sprache der Website getrennt. Warteschlange mit Wiederholung.',
         'Web Push' => 'Benachrichtigungen über neue Artikel im Browser – ohne Vermittler, nur über die Zustelldienste der Browser selbst.',
         'Anzeigensystem' => 'Positionen, Ausrichtung auf Rubriken, zeitlich begrenzte Kampagnen und ein Bericht über Einblendungen und Klicks.',

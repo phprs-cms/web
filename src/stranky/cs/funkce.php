@@ -35,6 +35,7 @@ $skupiny = [
         'Komentáře s moderací' => 'Antispam bez cookies a bez cizích služeb.',
         'Registrace bez hesla' => 'Čtenář se registruje jen e-mailem; heslo si nastaví z odkazu, nebo se přihlašuje jednorázovým odkazem. Uložené články, odběr newsletteru, komentáře pod vlastním účtem.',
         'Zamčený obsah a měkký paywall' => 'Část obsahu jen pro přihlášené nebo předplatitele; několik zamčených článků měsíčně může být zdarma.',
+        'Předplatné přes Stripe' => 'Čtenář si předplatné zaplatí kartou na stránce Stripe a web mu ho sám zapne i prodlužuje; zrušení a změnu karty si vyřídí v portálu Stripe. Údaje o kartě se na váš web nedostanou. Ručně můžete předplatné zapsat komukoli dál.',
         'Newsletter' => 'Ruční i automatický výběr nových článků, pro každý jazyk webu zvlášť. Fronta s opakováním.',
         'Web Push' => 'Oznámení o nových článcích do prohlížeče – bez zprostředkovatele, jen přes doručovací služby samotných prohlížečů.',
         'Reklamní systém' => 'Pozice, cílení na rubriky, časové kampaně a výkaz zobrazení a prokliků.',

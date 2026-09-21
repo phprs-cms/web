@@ -35,6 +35,7 @@ $skupiny = [
         'Comments with moderation' => 'Antispam without cookies and without third-party services.',
         'Registration without a password' => 'The reader signs up with just an e-mail; they set a password from a link, or log in with a one-time link. Saved articles, newsletter subscription, comments under their own account.',
         'Locked content and a soft paywall' => 'Part of the content only for logged-in readers or subscribers; a few locked articles per month can be free.',
+        'Subscriptions through Stripe' => 'The reader pays by card on a Stripe page and the site turns the subscription on and renews it by itself; cancelling or changing the card happens in the Stripe portal. Card details never reach your site. You can still enter a subscription by hand for anyone.',
         'Newsletter' => 'Manual and automatic selection of new articles, separately for each language of the site. A queue with retries.',
         'Web Push' => 'Browser notifications about new articles – no intermediary, only the browsers\' own delivery services.',
         'Advertising system' => 'Positions, targeting by section, timed campaigns and a report of impressions and clicks.',
