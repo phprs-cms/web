@@ -50,7 +50,7 @@ $stranka['popis'] = 'Downloading phpRS, hosting requirements and installation in
 			<li><strong>Upload the contents of the package</strong> to the site folder – including the hidden <code>.htaccess</code> files.</li>
 			<li><strong>Open the site in a browser.</strong> The installer starts by itself and checks the server.</li>
 			<li><strong>Fill in the database details, the site name and the administrator account</strong>, choose a time zone and a template.</li>
-			<li><strong>Delete <code>install.php</code></strong>, log in and go through First steps on the dashboard.</li>
+			<li><strong>Log in</strong> and go through First steps on the dashboard. The installer deletes itself when it finishes.</li>
 		</ol>
 	</div>
 </section>

@@ -108,7 +108,7 @@ $stranka['trida'] = 'je-uvod';
 			<li><strong>Upload the files</strong> from the package to your hosting.</li>
 			<li><strong>Open the site</strong> – the installer starts by itself and checks the server.</li>
 			<li><strong>Fill in the database, the site name and the administrator account</strong> and choose a template.</li>
-			<li><strong>Delete <code>install.php</code></strong> and log in to the administration.</li>
+			<li><strong>Log in to the administration.</strong> The installer deletes itself when it finishes.</li>
 		</ol>
 	</div>
 </section>

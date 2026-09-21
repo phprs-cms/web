@@ -50,7 +50,7 @@ $stranka['popis'] = 'Stažení phpRS, požadavky na hosting a instalace ve čty�
 			<li><strong>Nahrajte obsah balíčku</strong> do složky webu – včetně skrytých souborů <code>.htaccess</code>.</li>
 			<li><strong>Otevřete web v prohlížeči.</strong> Instalátor se spustí sám a zkontroluje server.</li>
 			<li><strong>Vyplňte údaje k databázi, název webu a účet správce</strong>, zvolte časové pásmo a šablonu.</li>
-			<li><strong>Smažte <code>install.php</code></strong>, přihlaste se a projděte První kroky na přehledu.</li>
+			<li><strong>Přihlaste se</strong> a projděte První kroky na přehledu. Instalátor se po dokončení smaže sám.</li>
 		</ol>
 	</div>
 </section>

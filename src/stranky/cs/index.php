@@ -108,7 +108,7 @@ $stranka['trida'] = 'je-uvod';
 			<li><strong>Nahrajte soubory</strong> z balíčku na hosting.</li>
 			<li><strong>Otevřete web</strong> – instalátor se spustí sám a zkontroluje server.</li>
 			<li><strong>Vyplňte databázi, název webu a účet správce</strong> a vyberte šablonu.</li>
-			<li><strong>Smažte <code>install.php</code></strong> a přihlaste se do administrace.</li>
+			<li><strong>Přihlaste se do administrace.</strong> Instalátor se po dokončení smaže sám.</li>
 		</ol>
 	</div>
 </section>

@@ -50,7 +50,7 @@ $stranka['popis'] = 'Download von phpRS, Anforderungen an das Hosting und Instal
 			<li><strong>Laden Sie den Inhalt des Pakets</strong> in den Ordner der Website – einschließlich der versteckten Dateien <code>.htaccess</code>.</li>
 			<li><strong>Öffnen Sie die Website im Browser.</strong> Der Installer startet von selbst und prüft den Server.</li>
 			<li><strong>Tragen Sie Datenbankzugang, Namen der Website und Administratorkonto ein</strong>, wählen Sie Zeitzone und Vorlage.</li>
-			<li><strong>Löschen Sie <code>install.php</code></strong>, melden Sie sich an und gehen Sie die „Ersten Schritte“ in der Übersicht durch.</li>
+			<li><strong>Melden Sie sich an</strong> und gehen Sie die „Ersten Schritte“ in der Übersicht durch. Der Installer löscht sich nach Abschluss selbst.</li>
 		</ol>
 	</div>
 </section>

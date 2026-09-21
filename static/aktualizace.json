@@ -1,17 +1,16 @@
 {
-    "verze": "3.0.0-beta.7",
+    "verze": "3.0.0-beta.8",
     "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.7/phprs-3.0.0-beta.7.zip",
-    "sha256": "9524b3c2e0bff05b49b023b84f61928498fad09fb59b986653e626539cd7e681",
-    "podpis": "Bp612RJFdXmO+Hni54Nvlc/X/6a+LmKEx3ratTXbPEVmhb7zhDyHLV7NbudBf8GAfx9kHxx1hW984b5sNdSUDw==",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-beta.8/phprs-3.0.0-beta.8.zip",
+    "sha256": "6777485c7b9bd579b1839f2929465b3f081c5fd45b28bfa700e847dfcc9db9fd",
+    "podpis": "L2qIAyZyLqL5allfn5Zn1tT9zB5PfitzK8mgsn/a902lOTEwR15hW1ObUBNknFZqr3LswfXzFyH4jiIaJgSnAA==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Šablona článku (Standardní, Dlouhé čtení, Fotoreportáž, Rozhovor) je první volbou formuláře článku.",
-        "Cesty v hláškách a ve Stavu systému jsou odkazy – např. hláška o nové verzi vede přímo na aktualizaci.",
-        "Hlášky administrace se překládají do slovenštiny, angličtiny a němčiny.",
-        "Komentáře ukládají místo IP adresy jen otisk; dřív uložené adresy se mažou.",
-        "Opravy: Ctrl+K v editoru, titulní strana a jazykové verze, e-maily ke korektuře v podrubrikách, přílohy v Médiích, stránkování dialogu Médií, stavy předávky v redakčním kalendáři."
+        "Import z WordPressu (články, rubriky, štítky, stránky, komentáře, obrázky, přesměrování starých adres) a export celého webu v otevřeném formátu",
+        "Příručka je kompletní v češtině, angličtině a němčině",
+        "Opravy: formulář bloku mazal jazykovou verzi, jazyk článku přes MCP, adresy v oznámeních podle jazyka článku, přesun bloků při přepnutí šablony, úprava konceptu v náhledu",
+        "Úklid souborů po zrušené šabloně default"
     ]
 }
