@@ -10,6 +10,9 @@ $skupiny = [
         'Drafts are saved continuously' => 'In the browser and on the server. A lock makes sure two people do not edit one article at the same time.',
         'Article templates and content types' => 'Long read, Photo story, Interview; live coverage, review with a rating, podcast.',
         'Scheduled publishing' => 'The article goes out at the set time – in the time zone of the site, not of the server.',
+        'In brief, questions and answers' => 'A bullet-point summary of the article and a question-and-answer block with structured data. Useful to readers and search engines alike.',
+        'Series and author pages' => 'Articles in instalments with navigation between parts. Every author has a page with a bio and their texts.',
+        'Downloadable attachments' => 'PDFs, spreadsheets, audio, video and other common types up to 200 MB. Executables, HTML and SVG cannot be uploaded.',
     ]],
     ['redakce', 'Newsroom', 'From a single author to an editorial team with a proofreader and a front page editor.', 'snimky/admin-prehled', 'Admin dashboard', [
         'Roles and permissions' => 'Author, editor, administrator. The right to publish is separate. Access can be limited to selected sections.',
@@ -18,6 +21,7 @@ $skupiny = [
         'Editing directly on the site' => 'You fix a typo on the page where you found it. This works for articles and pages.',
         'Command palette' => 'Ctrl/⌘+K: find an article, start a new one, jump to the settings. No clicking through menus.',
         'Bulk actions and audit log' => 'Move to a section, add a tag, lock or delete several articles at once. Important changes are logged.',
+        'Broken link check' => 'The system goes through the links in published articles in the background and shows which ones have stopped working.',
     ]],
     ['vzhled', 'Appearance', 'Three templates, a site identity and a layout that you put together directly on the page.', 'snimky/web-bloky', 'Visual block editor', [
         'Three built-in templates' => 'Classic Newspaper, Modern Magazine and Minimal.',
@@ -34,6 +38,8 @@ $skupiny = [
         'Newsletter' => 'Manual and automatic selection of new articles, separately for each language of the site. A queue with retries.',
         'Web Push' => 'Browser notifications about new articles – no intermediary, only the browsers\' own delivery services.',
         'Advertising system' => 'Positions, targeting by section, timed campaigns and a report of impressions and clicks.',
+        'Polls, news items and ratings' => 'Polls and short news items as extensions; star ratings for articles; readers can report an inappropriate comment.',
+        'Revenue overview' => 'Subscriptions, voluntary support, advertising and the newsletter on one screen. The Support us block leads to your payment link.',
     ]],
     ['seo', 'SEO and AI search', 'So that both people and machines find the article – and so that you control what machines are allowed to do.', null, '', [
         'Structured data' => 'Schema.org for articles, reviews, podcasts, breadcrumbs and the author.',
@@ -41,6 +47,9 @@ $skupiny = [
         'IndexNow' => 'Search engines learn about a new article right away.',
         'llms.txt and Markdown versions of articles' => 'Clean text for language models, if you want that.',
         'AI crawler control' => 'One switch lets AI bots (GPTBot, ClaudeBot, PerplexityBot…) in or keeps them out – without editing robots.txt by hand.',
+        'Podcast and Google News' => 'A podcast feed with the tags Apple Podcasts and Spotify expect, and a separate sitemap for Google News.',
+        '301 redirects' => 'Old addresses lead to new ones; for every redirect you see how many times it was used.',
+        'Cookie banner and consent-based analytics' => 'A built-in banner with a consent log. GA4, Matomo and Plausible start only after consent; the built-in visit statistics need no cookies at all.',
     ]],
     ['jazyky', 'Languages', 'A multilingual site and a multilingual editorial team.', null, '', [
         'Language versions of the site' => 'Czech, Slovak, English, German – with hreflang and linked translations.',
@@ -60,6 +69,9 @@ $skupiny = [
         'Two-factor login' => 'TOTP with backup codes, plus a passkey (fingerprint, Face ID) as a more convenient second step. The account is locked after repeated failures.',
         'Core integrity check' => 'Files are compared with the signed file list of the release.',
         'Mail over SMTP with a queue' => 'Undelivered messages are retried; an overview of recent messages.',
+        'Read-only API and webhook' => 'A JSON API for a mobile app or another site, and a webhook when an article is published – both as extensions.',
+        'Page cache and full-text search' => 'A reader who is not logged in gets a ready-made page from the cache. Search runs on the database, with no outside service.',
+        'Sample magazine' => 'During installation you can load sample content in Czech, English or German and delete it later with one click.',
     ]],
 ];
 ?>

@@ -10,6 +10,9 @@ $skupiny = [
         'Koncept se ukládá průběžně' => 'V prohlížeči i na serveru. Zámek hlídá, aby jeden článek neupravovali dva lidé zároveň.',
         'Šablony článku a typy obsahu' => 'Dlouhé čtení, Fotoreportáž, Rozhovor; živá reportáž, recenze s hodnocením, podcast.',
         'Plánované vydání' => 'Článek vyjde v nastavený čas – podle časového pásma webu, ne serveru.',
+        'Ve zkratce, otázky a odpovědi' => 'Shrnutí článku v bodech a blok otázek a odpovědí se strukturovanými daty. Hodí se čtenáři i vyhledávačům.',
+        'Seriály a stránky autorů' => 'Články na pokračování s navigací mezi díly. Každý autor má stránku s medailonkem a svými texty.',
+        'Přílohy ke stažení' => 'PDF, tabulky, zvuk, video a další běžné typy do 200 MB. Spustitelné soubory, HTML ani SVG nahrát nejde.',
     ]],
     ['redakce', 'Redakce', 'Od jednoho autora po redakci s korektorem a editorem titulní strany.', 'snimky/admin-prehled', 'Přehled administrace', [
         'Role a oprávnění' => 'Autor, redaktor, administrátor. Právo vydávat zvlášť. Přístup jen k vybraným rubrikám.',
@@ -18,6 +21,7 @@ $skupiny = [
         'Úprava přímo na webu' => 'Překlep opravíte na stránce, kde jste ho našli. Platí pro články i stránky.',
         'Paleta příkazů' => 'Ctrl/⌘+K: najít článek, založit nový, skočit do nastavení. Bez klikání v nabídkách.',
         'Hromadné akce a protokol' => 'Přesun do rubriky, přidání štítku, zamknutí a smazání více článků najednou. Důležité změny se zapisují.',
+        'Kontrola nefunkčních odkazů' => 'Systém na pozadí prochází odkazy ve vydaných článcích a ukáže, které přestaly fungovat.',
     ]],
     ['vzhled', 'Vzhled', 'Tři šablony, identita webu a rozvržení, které skládáte přímo na stránce.', 'snimky/web-bloky', 'Vizuální editor bloků', [
         'Tři vestavěné šablony' => 'Classic Newspaper, Modern Magazine a Minimal.',
@@ -34,6 +38,8 @@ $skupiny = [
         'Newsletter' => 'Ruční i automatický výběr nových článků, pro každý jazyk webu zvlášť. Fronta s opakováním.',
         'Web Push' => 'Oznámení o nových článcích do prohlížeče – bez zprostředkovatele, jen přes doručovací služby samotných prohlížečů.',
         'Reklamní systém' => 'Pozice, cílení na rubriky, časové kampaně a výkaz zobrazení a prokliků.',
+        'Ankety, novinky a hodnocení' => 'Ankety a krátké novinky jako rozšíření; hodnocení článků hvězdičkami; nevhodný komentář může čtenář nahlásit.',
+        'Přehled Příjmy' => 'Předplatné, dobrovolná podpora, reklama a newsletter na jedné obrazovce. Blok Podpořte nás vede na váš platební odkaz.',
     ]],
     ['seo', 'SEO a vyhledávání s AI', 'Aby článek našel člověk i stroj – a abyste měli pod kontrolou, co stroje smějí.', null, '', [
         'Strukturovaná data' => 'Schema.org pro články, recenze, podcasty, drobečkovou navigaci i autora.',
@@ -41,6 +47,9 @@ $skupiny = [
         'IndexNow' => 'Vyhledávače se o novém článku dozvědí hned.',
         'llms.txt a Markdown verze článků' => 'Čistý text pro jazykové modely, pokud o to stojíte.',
         'Řízení AI crawlerů' => 'Jedním přepínačem AI roboty (GPTBot, ClaudeBot, PerplexityBot…) pustíte, nebo zakážete – bez ruční úpravy robots.txt.',
+        'Podcast a Google News' => 'Podcastový kanál se značkami pro Apple Podcasts a Spotify a zvláštní mapa webu pro Google News.',
+        'Přesměrování 301' => 'Staré adresy vedou na nové; u každého přesměrování vidíte, kolikrát se použilo.',
+        'Cookie lišta a měření se souhlasem' => 'Vestavěná lišta s evidencí souhlasů. GA4, Matomo a Plausible se spustí až po souhlasu; vlastní statistika návštěv cookies nepotřebuje vůbec.',
     ]],
     ['jazyky', 'Jazyky', 'Vícejazyčný web i vícejazyčná redakce.', null, '', [
         'Jazykové verze webu' => 'Čeština, slovenština, angličtina, němčina – s hreflang a propojením překladů.',
@@ -60,6 +69,9 @@ $skupiny = [
         'Dvoufázové přihlášení' => 'TOTP se záložními kódy a k němu přihlašovací klíč (otisk prstu, Face ID) jako pohodlnější druhý krok. Zámek účtu po opakovaných chybách.',
         'Kontrola neporušenosti jádra' => 'Soubory se porovnávají s podepsaným seznamem vydání.',
         'Pošta přes SMTP s frontou' => 'Nedoručené zprávy se zkoušejí znovu; přehled posledních zpráv.',
+        'Čtecí API a webhook' => 'JSON API pro mobilní aplikaci nebo jiný web a webhook při vydání článku – obojí jako rozšíření.',
+        'Cache stránek a fulltextové hledání' => 'Nepřihlášený čtenář dostává hotovou stránku z cache. Hledání běží nad databází, bez cizí služby.',
+        'Ukázkový magazín' => 'Při instalaci si můžete nahrát ukázkový obsah v češtině, angličtině nebo němčině a později ho jedním kliknutím smazat.',
     ]],
 ];
 ?>

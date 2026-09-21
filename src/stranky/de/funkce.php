@@ -10,6 +10,9 @@ $skupiny = [
         'Der Entwurf wird laufend gespeichert' => 'Im Browser und auf dem Server. Eine Sperre verhindert, dass zwei Personen denselben Artikel gleichzeitig bearbeiten.',
         'Artikelvorlagen und Inhaltstypen' => 'Longread, Fotoreportage, Interview; Live-Reportage, Rezension mit Bewertung, Podcast.',
         'Geplante Veröffentlichung' => 'Der Artikel erscheint zur eingestellten Zeit – nach der Zeitzone der Website, nicht des Servers.',
+        'Kurz gefasst, Fragen und Antworten' => 'Zusammenfassung des Artikels in Stichpunkten und ein Frage-Antwort-Block mit strukturierten Daten. Nützlich für Leser wie für Suchmaschinen.',
+        'Serien und Autorenseiten' => 'Artikel in Fortsetzungen mit Navigation zwischen den Teilen. Jeder Autor hat eine Seite mit Kurzporträt und seinen Texten.',
+        'Anhänge zum Herunterladen' => 'PDF, Tabellen, Audio, Video und weitere gängige Typen bis 200 MB. Ausführbare Dateien, HTML und SVG lassen sich nicht hochladen.',
     ]],
     ['redakce', 'Redaktion', 'Vom einzelnen Autor bis zur Redaktion mit Korrektorat und Titelseiten-Editor.', 'snimky/admin-prehled', 'Übersicht der Administration', [
         'Rollen und Berechtigungen' => 'Autor, Redakteur, Administrator. Das Recht zu veröffentlichen wird gesondert vergeben. Zugriff nur auf ausgewählte Rubriken.',
@@ -18,6 +21,7 @@ $skupiny = [
         'Bearbeiten direkt auf der Website' => 'Einen Tippfehler korrigieren Sie auf der Seite, auf der Sie ihn gefunden haben. Gilt für Artikel und Seiten.',
         'Befehlspalette' => 'Strg/⌘+K: Artikel finden, neuen anlegen, in die Einstellungen springen. Ohne Klicken durch Menüs.',
         'Sammelaktionen und Protokoll' => 'Mehrere Artikel auf einmal in ein Ressort verschieben, verschlagworten, sperren oder löschen. Wichtige Änderungen werden protokolliert.',
+        'Prüfung defekter Links' => 'Das System geht im Hintergrund die Links in veröffentlichten Artikeln durch und zeigt, welche nicht mehr funktionieren.',
     ]],
     ['vzhled', 'Aussehen', 'Drei Vorlagen, die Identität der Website und ein Layout, das Sie direkt auf der Seite zusammenstellen.', 'snimky/web-bloky', 'Visueller Block-Editor', [
         'Drei mitgelieferte Vorlagen' => 'Classic Newspaper, Modern Magazine und Minimal.',
@@ -34,6 +38,8 @@ $skupiny = [
         'Newsletter' => 'Manuelle und automatische Auswahl neuer Artikel, für jede Sprache der Website getrennt. Warteschlange mit Wiederholung.',
         'Web Push' => 'Benachrichtigungen über neue Artikel im Browser – ohne Vermittler, nur über die Zustelldienste der Browser selbst.',
         'Anzeigensystem' => 'Positionen, Ausrichtung auf Rubriken, zeitlich begrenzte Kampagnen und ein Bericht über Einblendungen und Klicks.',
+        'Umfragen, Kurzmeldungen und Bewertungen' => 'Umfragen und Kurzmeldungen als Erweiterungen; Sternebewertung für Artikel; Leser können einen unpassenden Kommentar melden.',
+        'Übersicht Einnahmen' => 'Abonnements, freiwillige Unterstützung, Werbung und Newsletter auf einem Bildschirm. Der Block „Unterstützen Sie uns“ führt zu Ihrem Zahlungslink.',
     ]],
     ['seo', 'SEO und KI-Suche', 'Damit Mensch und Maschine den Artikel finden – und Sie bestimmen, was Maschinen dürfen.', null, '', [
         'Strukturierte Daten' => 'Schema.org für Artikel, Rezensionen, Podcasts, Brotkrümelnavigation und Autor.',
@@ -41,6 +47,9 @@ $skupiny = [
         'IndexNow' => 'Suchmaschinen erfahren sofort von einem neuen Artikel.',
         'llms.txt und Markdown-Versionen der Artikel' => 'Reiner Text für Sprachmodelle, wenn Sie das möchten.',
         'Steuerung der KI-Crawler' => 'Mit einem Schalter lassen Sie KI-Bots (GPTBot, ClaudeBot, PerplexityBot…) zu oder sperren sie aus – ohne die robots.txt von Hand zu bearbeiten.',
+        'Podcast und Google News' => 'Ein Podcast-Feed mit den Angaben, die Apple Podcasts und Spotify erwarten, und eine eigene Sitemap für Google News.',
+        '301-Weiterleitungen' => 'Alte Adressen führen auf neue; bei jeder Weiterleitung sehen Sie, wie oft sie verwendet wurde.',
+        'Cookie-Banner und Webanalyse mit Einwilligung' => 'Eingebautes Banner mit Protokoll der Einwilligungen. GA4, Matomo und Plausible starten erst nach der Einwilligung; die eigene Besuchsstatistik braucht gar keine Cookies.',
     ]],
     ['jazyky', 'Sprachen', 'Mehrsprachige Website und mehrsprachige Redaktion.', null, '', [
         'Sprachversionen der Website' => 'Tschechisch, Slowakisch, Englisch, Deutsch – mit hreflang und verknüpften Übersetzungen.',
@@ -60,6 +69,9 @@ $skupiny = [
         'Zwei-Faktor-Anmeldung' => 'TOTP mit Ersatzcodes und dazu ein Passkey (Fingerabdruck, Face ID) als bequemerer zweiter Schritt. Kontosperre nach wiederholten Fehlversuchen.',
         'Integritätsprüfung des Kerns' => 'Die Dateien werden mit der signierten Dateiliste der Version verglichen.',
         'E-Mail über SMTP mit Warteschlange' => 'Nicht zugestellte Nachrichten werden erneut versucht; Übersicht der letzten Nachrichten.',
+        'Lese-API und Webhook' => 'Eine JSON-API für eine mobile App oder eine andere Website und ein Webhook bei Veröffentlichung eines Artikels – beides als Erweiterung.',
+        'Seiten-Cache und Volltextsuche' => 'Nicht angemeldete Leser erhalten die fertige Seite aus dem Cache. Die Suche läuft über die Datenbank, ohne fremden Dienst.',
+        'Beispielmagazin' => 'Bei der Installation können Sie Beispielinhalte auf Tschechisch, Englisch oder Deutsch laden und später mit einem Klick löschen.',
     ]],
 ];
 ?>
