@@ -53,10 +53,11 @@ $skupiny = [
         'Connection to Claude (MCP)' => 'Claude manages content and writes custom templates. It cannot touch the system code, the users or the server.',
     ]],
     ['provoz', 'Operation and security', 'Things you appreciate only when something goes wrong. Here they are ready in advance.', 'snimky/admin-stav', 'System status', [
+        'Import from WordPress and site export' => 'Bring over articles, sections, tags, pages, comments and images from a WordPress export; old addresses are redirected. And you can take all your content away in an open format at any time.',
         'Signed updates' => 'One button, an Ed25519 signature. Security releases install themselves.',
         'Backups, also off the server' => 'Weekly and before every update; a copy to FTP or S3. Restore from the administration.',
         'System status' => 'Server, database, permissions, security, mail, cron – with advice on what to fix. Also as JSON for monitoring.',
-        'Two-factor login' => 'TOTP with backup codes. The account is locked after repeated failures.',
+        'Two-factor login' => 'TOTP with backup codes, or a passkey (fingerprint, Face ID). The account is locked after repeated failures.',
         'Core integrity check' => 'Files are compared with the signed file list of the release.',
         'Mail over SMTP with a queue' => 'Undelivered messages are retried; an overview of recent messages.',
     ]],

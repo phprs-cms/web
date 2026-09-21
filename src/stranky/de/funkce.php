@@ -53,10 +53,11 @@ $skupiny = [
         'Anbindung an Claude (MCP)' => 'Claude verwaltet Inhalte und schreibt eigene Vorlagen. In den Code des Systems, die Benutzer und den Server greift Claude nicht ein.',
     ]],
     ['provoz', 'Betrieb und Sicherheit', 'Dinge, die man erst schätzt, wenn etwas schiefgeht. Hier sind sie schon fertig.', 'snimky/admin-stav', 'Systemstatus', [
+        'Import aus WordPress und Export der Website' => 'Artikel, Ressorts, Schlagwörter, Seiten, Kommentare und Bilder übernehmen Sie aus einem WordPress-Export; alte Adressen werden weitergeleitet. Und alle Inhalte nehmen Sie jederzeit in einem offenen Format mit.',
         'Signierte Aktualisierungen' => 'Eine Schaltfläche, Ed25519-Signatur. Sicherheitsversionen installieren sich selbst.',
         'Backups auch außerhalb des Servers' => 'Wöchentlich und vor jeder Aktualisierung; Kopie per FTP oder nach S3. Wiederherstellung aus der Administration.',
         'Systemstatus' => 'Server, Datenbank, Rechte, Absicherung, E-Mail, Cron – mit einem Hinweis, was zu beheben ist. Auch als JSON für das Monitoring.',
-        'Zwei-Faktor-Anmeldung' => 'TOTP mit Ersatzcodes. Kontosperre nach wiederholten Fehlversuchen.',
+        'Zwei-Faktor-Anmeldung' => 'TOTP mit Ersatzcodes oder ein Passkey (Fingerabdruck, Face ID). Kontosperre nach wiederholten Fehlversuchen.',
         'Integritätsprüfung des Kerns' => 'Die Dateien werden mit der signierten Dateiliste der Version verglichen.',
         'E-Mail über SMTP mit Warteschlange' => 'Nicht zugestellte Nachrichten werden erneut versucht; Übersicht der letzten Nachrichten.',
     ]],

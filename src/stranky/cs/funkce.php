@@ -53,10 +53,11 @@ $skupiny = [
         'Napojení na Claude (MCP)' => 'Claude spravuje obsah a píše vlastní šablony. Do kódu systému, uživatelů ani serveru nezasáhne.',
     ]],
     ['provoz', 'Provoz a bezpečnost', 'Věci, které oceníte, až když se něco pokazí. Tady jsou hotové předem.', 'snimky/admin-stav', 'Stav systému', [
+        'Import z WordPressu a export webu' => 'Články, rubriky, štítky, stránky, komentáře i obrázky převedete z exportu WordPressu; staré adresy se přesměrují. A celý obsah kdykoli odnesete v otevřeném formátu.',
         'Podepsané aktualizace' => 'Jedno tlačítko, podpis Ed25519. Bezpečnostní vydání se nainstalují sama.',
         'Zálohy i mimo server' => 'Týdně a před každou aktualizací; kopie na FTP nebo do S3. Obnova z administrace.',
         'Stav systému' => 'Server, databáze, práva, zabezpečení, pošta, cron – s radou, co opravit. I jako JSON pro dohled.',
-        'Dvoufázové přihlášení' => 'TOTP se záložními kódy. Zámek účtu po opakovaných chybách.',
+        'Dvoufázové přihlášení' => 'TOTP se záložními kódy nebo přihlašovací klíč (otisk prstu, Face ID). Zámek účtu po opakovaných chybách.',
         'Kontrola neporušenosti jádra' => 'Soubory se porovnávají s podepsaným seznamem vydání.',
         'Pošta přes SMTP s frontou' => 'Nedoručené zprávy se zkoušejí znovu; přehled posledních zpráv.',
     ]],
