@@ -4,15 +4,39 @@
 
 	var koren = document.documentElement;
 
+	// režim: podle systému (bez data-theme) → světlý → tmavý → zpět podle systému; uloženou volbu čte rezim.js v hlavičce
 	var rezim = document.querySelector('[data-rezim]');
 	if (rezim) {
+		var dalsiRezim = { auto: 'light', light: 'dark', dark: 'auto' };
+		var stavRezimu = function () {
+			var stav = koren.getAttribute('data-theme');
+			return stav === 'light' || stav === 'dark' ? stav : 'auto';
+		};
+		var popisRezimu = function () {
+			var stav = stavRezimu();
+			var popis = rezim.getAttribute('data-popis-' + stav);
+			rezim.setAttribute('data-stav', stav);
+			if (popis) {
+				rezim.setAttribute('aria-label', popis);
+				rezim.setAttribute('title', popis);
+			}
+		};
+		popisRezimu();
 		rezim.addEventListener('click', function () {
-			var tmavy = koren.getAttribute('data-theme')
-				? koren.getAttribute('data-theme') === 'dark'
-				: window.matchMedia('(prefers-color-scheme: dark)').matches;
-			var novy = tmavy ? 'light' : 'dark';
-			koren.setAttribute('data-theme', novy);
-			try { localStorage.setItem('rezim', novy); } catch (e) { /* nevadí */ }
+			var novy = dalsiRezim[stavRezimu()];
+			if (novy === 'auto') {
+				koren.removeAttribute('data-theme');
+			} else {
+				koren.setAttribute('data-theme', novy);
+			}
+			try {
+				if (novy === 'auto') {
+					localStorage.removeItem('rezim');
+				} else {
+					localStorage.setItem('rezim', novy);
+				}
+			} catch (e) { /* bez úložiště volba platí jen pro tuhle stránku */ }
+			popisRezimu();
 		});
 	}
 

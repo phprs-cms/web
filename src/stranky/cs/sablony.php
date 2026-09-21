@@ -1,9 +1,8 @@
 <?php
 $stranka['titulek'] = 'Šablony';
-$stranka['popis'] = 'Čtyři vestavěné šablony phpRS: klasická třísloupcová, Classic Newspaper, Modern Magazine a Minimal. Světlý i tmavý režim, vlastní šablony.';
+$stranka['popis'] = 'Tři vestavěné šablony phpRS: Classic Newspaper, Modern Magazine a Minimal. Světlý i tmavý režim, vlastní šablony.';
 
 $sablony = [
-    'default' => ['Klasická', 'Tři sloupce, bloky po stranách, články uprostřed. Pro weby, které chtějí mít na titulní straně hodně věcí najednou: rubriky, ankety, nejčtenější, kalendář.'],
     'classic-newspaper' => ['Classic Newspaper', 'Seriózní deník. Patkové titulky, tenké linky, otvírák a sloupcová sazba ve stylu velkých světových novin.'],
     'modern-magazine' => ['Modern Magazine', 'Výrazný online magazín. Černá lišta, velké titulky, velké fotografie a mřížka karet.'],
     'minimal' => ['Minimal', 'Osobní magazín, blog nebo newsletterový web. Jeden úzký sloupec, klidná typografie, seznam článků bez rušivých prvků.'],
@@ -12,7 +11,7 @@ $sablony = [
 <section class="zahlavi">
 	<div class="obal">
 		<h1>Šablony</h1>
-		<p class="perex">V balíčku jsou čtyři. Všechny mají světlý i tmavý režim, fungují na telefonu a přebírají logo, barvu a písma z nastavení Identita webu. Přepnutí šablony je otázka jednoho kliknutí – obsah zůstává.</p>
+		<p class="perex">V balíčku jsou tři. Všechny mají světlý i tmavý režim, fungují na telefonu a přebírají logo, barvu a písma z nastavení Identita webu. Přepnutí šablony je otázka jednoho kliknutí – obsah zůstává.</p>
 	</div>
 </section>
 <?php foreach ($sablony as $slug => [$nazev, $popis]): ?>

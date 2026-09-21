@@ -297,19 +297,33 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
     zapis($zaklad . 'hledani.json', json_encode($hledani, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
 }
 
-// stránka 404: jedna pro celý web, ve výchozím jazyce; do ostatních jazyků vede odkaz na jejich úvod
-$vychozi = $web['vychozi_jazyk'];
-$t = $texty[$vychozi];
-$jineJazyky = [];
-foreach (array_diff(array_keys($web['jazyky']), [$vychozi]) as $j) {
-    $jineJazyky[] = '<a href="' . e($adresaStranky($j, '')) . '" lang="' . e($j) . '" hreflang="' . e($j) . '">' . e($web['jazyky'][$j] . ' – ' . $texty[$j]['nenalezeno_domu']) . '</a>';
+// stránky 404: každý jazyk má svou (/cs/404.html, /en/404.html, /de/404.html), kořenová /404.html je ve výchozím jazyce.
+// Kterou z nich server pošle, určuje static/.htaccess podle požadované adresy. Přepínač jazyků vede na úvody.
+$uvody = [];
+foreach (array_keys($web['jazyky']) as $j) {
+    $uvody[$j] = $adresaStranky($j, '');
 }
-$obsah404 = '<section class="zahlavi"><div class="obal"><h1>' . e($t['nenalezeno']) . '</h1><p class="perex">' . e($t['nenalezeno_text']) . '</p>'
-    . '<p class="tlacitka"><a class="tl" href="' . e($adresaStranky($vychozi, '')) . '">' . e($t['nenalezeno_domu']) . '</a>'
-    . '<a class="tl tl-obrys" href="' . e($adresaPrirucky($vychozi, 'index')) . '">' . e($t['dokumentace']) . '</a></p>'
-    . '<p class="drobne">' . implode(' · ', $jineJazyky) . '</p></div></section>';
-zapis('404.html', sablona('stranka', ['web' => $web, 't' => $t, 'jazyk' => $vychozi, 'otisk' => $otisk, 'logo' => $logo, 'url' => '/404.html', 'adresa' => '404', 'jinde' => [],
-    'stranka' => ['titulek' => $t['nenalezeno'], 'popis' => '', 'trida' => '', 'neindexovat' => true], 'obsah' => $obsah404]));
+$stranka404 = static function (string $jazyk, string $url) use ($web, $texty, $otisk, $logo, $uvody, $adresaPrirucky): string {
+    $t = $texty[$jazyk];
+    $jineJazyky = [];
+    foreach (array_diff_key($uvody, [$jazyk => true]) as $j => $uvod) {
+        $jineJazyky[] = '<a href="' . e($uvod) . '" lang="' . e($j) . '" hreflang="' . e($j) . '">' . e($web['jazyky'][$j] . ' – ' . $texty[$j]['nenalezeno_domu']) . '</a>';
+    }
+    $obsah = '<section class="zahlavi"><div class="obal"><h1>' . e($t['nenalezeno']) . '</h1><p class="perex">' . e($t['nenalezeno_text']) . '</p>'
+        . '<p class="tlacitka"><a class="tl" href="' . e($uvody[$jazyk]) . '">' . e($t['nenalezeno_domu']) . '</a>'
+        . '<a class="tl tl-obrys" href="' . e($adresaPrirucky($jazyk, 'index')) . '">' . e($t['dokumentace']) . '</a></p>'
+        . '<p class="drobne">' . implode(' · ', $jineJazyky) . '</p></div></section>';
+
+    return sablona('stranka', ['web' => $web, 't' => $t, 'jazyk' => $jazyk, 'otisk' => $otisk, 'logo' => $logo, 'url' => $url, 'adresa' => '404', 'jinde' => $uvody,
+        'stranka' => ['titulek' => $t['nenalezeno'], 'popis' => '', 'trida' => '', 'neindexovat' => true], 'obsah' => $obsah]);
+};
+$vychozi = $web['vychozi_jazyk'];
+foreach (array_keys($web['jazyky']) as $j) {
+    $GLOBALS['jazykStranky'] = $j;
+    zapis("$j/404.html", $stranka404($j, "/$j/404.html"));
+}
+$GLOBALS['jazykStranky'] = $vychozi;
+zapis('404.html', $stranka404($vychozi, '/404.html'));
 
 // kořen webu: na hostingu rozhoduje .htaccess podle jazyka prohlížeče, tenhle soubor je záloha bez něj
 zapis('index.html', '<!doctype html><html lang="' . $vychozi . '"><meta charset="utf-8"><title>phpRS</title><meta http-equiv="refresh" content="0; url=/' . $vychozi . '/"><link rel="canonical" href="' . $web['adresa'] . '/' . $vychozi . '/"><p><a href="/' . $vychozi . '/">phpRS</a></p></html>' . "\n");

@@ -17,7 +17,7 @@ $stranka['trida'] = 'je-uvod';
 		<dl class="uvod-cisla">
 			<div><dt>0</dt><dd>dependencies and build steps</dd></div>
 			<div><dt>4</dt><dd>installation steps</dd></div>
-			<div><dt>4</dt><dd>built-in templates</dd></div>
+			<div><dt>3</dt><dd>built-in templates</dd></div>
 			<div><dt>4</dt><dd>admin languages</dd></div>
 		</dl>
 	</div>
@@ -70,10 +70,10 @@ $stranka['trida'] = 'je-uvod';
 
 <section class="pas">
 	<div class="obal">
-		<h2 class="nadpis-pasu">Four templates in the package</h2>
+		<h2 class="nadpis-pasu">Three templates in the package</h2>
 		<p class="pod-nadpisem">Each has a light and a dark mode and takes over your site's logo, colour and fonts. You can write your own template yourself – or with Claude through the MCP connection.</p>
 		<div class="sablony-nahled">
-<?php foreach (['default' => 'Classic', 'classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
+<?php foreach (['classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
 			<a href="/en/templates/#<?= e($slug) ?>">
 				<?= obrazek("snimky/sablona-$slug.webp", "The $nazev template – front page", 'jen-svetly') ?>
 				<?= obrazek("snimky/sablona-$slug-tmavy.webp", "The $nazev template – front page, dark mode", 'jen-tmavy') ?>

@@ -1,0 +1,20 @@
+/* Obrázek pro sdílení 1200 × 630. Barvy identity phpRS: modrá #2B5BE3, inkoust #0F1424, světle modrá #8FA8F5, plocha #F6F7F9. */
+@font-face {
+	font-family: "Noto Sans";
+	src: url("../../assets/fonts/noto-sans-latin-wght-normal.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; background: #0F1424; }
+.karta {
+	width: 1200px; height: 630px; padding: 84px 96px 80px;
+	display: flex; flex-direction: column; justify-content: space-between;
+	background: #0F1424; color: #FFFFFF; font-family: "Noto Sans", sans-serif;
+	border-bottom: 14px solid #2B5BE3;
+}
+.logo { display: block; height: 88px; width: auto; align-self: flex-start; }
+h1 { font-size: 78px; line-height: 1.1; font-weight: 800; letter-spacing: -0.035em; max-width: 960px; text-wrap: balance; }
+.spodek { display: flex; justify-content: space-between; align-items: baseline; gap: 40px; font-size: 27px; line-height: 1.2; }
+.adresa { font-weight: 700; color: #8FA8F5; letter-spacing: -0.01em; }
+.fakta { color: #A9B2CF; font-weight: 500; }

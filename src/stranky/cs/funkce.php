@@ -19,8 +19,8 @@ $skupiny = [
         'Paleta příkazů' => 'Ctrl/⌘+K: najít článek, založit nový, skočit do nastavení. Bez klikání v nabídkách.',
         'Hromadné akce a protokol' => 'Přesun, vydání, smazání více článků najednou. Důležité změny se zapisují.',
     ]],
-    ['vzhled', 'Vzhled', 'Čtyři šablony, identita webu a rozvržení, které skládáte přímo na stránce.', 'snimky/web-bloky', 'Vizuální editor bloků', [
-        'Čtyři vestavěné šablony' => 'Klasická třísloupcová, Classic Newspaper, Modern Magazine a Minimal.',
+    ['vzhled', 'Vzhled', 'Tři šablony, identita webu a rozvržení, které skládáte přímo na stránce.', 'snimky/web-bloky', 'Vizuální editor bloků', [
+        'Tři vestavěné šablony' => 'Classic Newspaper, Modern Magazine a Minimal.',
         'Identita webu' => 'Logo, barva a písma se nastaví jednou a šablony je převezmou.',
         'Tmavý režim' => 'Ve všech šablonách i v administraci. Řídí se systémem čtenáře, jde přepnout.',
         'Vizuální editor bloků' => 'Sloupce a bloky přetahujete na živé stránce – vidíte totéž co čtenář.',

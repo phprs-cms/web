@@ -1,9 +1,8 @@
 <?php
 $stranka['titulek'] = 'Vorlagen';
-$stranka['popis'] = 'Vier mitgelieferte Vorlagen von phpRS: Klassisch mit drei Spalten, Classic Newspaper, Modern Magazine und Minimal. Heller und dunkler Modus, eigene Vorlagen.';
+$stranka['popis'] = 'Drei mitgelieferte Vorlagen von phpRS: Classic Newspaper, Modern Magazine und Minimal. Heller und dunkler Modus, eigene Vorlagen.';
 
 $sablony = [
-    'default' => ['Klassisch', 'Drei Spalten, Blöcke an den Seiten, Artikel in der Mitte. Für Websites, die auf der Titelseite vieles zugleich zeigen wollen: Rubriken, Umfragen, meistgelesene Artikel, Kalender.'],
     'classic-newspaper' => ['Classic Newspaper', 'Seriöse Tageszeitung. Überschriften in Serifenschrift, feine Linien, Aufmacher und Spaltensatz im Stil großer internationaler Zeitungen.'],
     'modern-magazine' => ['Modern Magazine', 'Markantes Online-Magazin. Schwarze Leiste, große Überschriften, große Fotos und ein Kartenraster.'],
     'minimal' => ['Minimal', 'Persönliches Magazin, Blog oder Newsletter-Website. Eine schmale Spalte, ruhige Typografie, Artikelliste ohne störende Elemente.'],
@@ -12,7 +11,7 @@ $sablony = [
 <section class="zahlavi">
 	<div class="obal">
 		<h1>Vorlagen</h1>
-		<p class="perex">Im Paket sind vier. Alle haben einen hellen und einen dunklen Modus, funktionieren auf dem Telefon und übernehmen Logo, Farbe und Schriften aus der Einstellung „Identität der Website“. Die Vorlage wechseln Sie mit einem Klick – der Inhalt bleibt.</p>
+		<p class="perex">Im Paket sind drei. Alle haben einen hellen und einen dunklen Modus, funktionieren auf dem Telefon und übernehmen Logo, Farbe und Schriften aus der Einstellung „Identität der Website“. Die Vorlage wechseln Sie mit einem Klick – der Inhalt bleibt.</p>
 	</div>
 </section>
 <?php foreach ($sablony as $slug => [$nazev, $popis]): ?>

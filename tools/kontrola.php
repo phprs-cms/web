@@ -6,7 +6,8 @@
  *
  * Hlídá: párování značek, duplicitní id, právě jeden <h1>, alt a rozměry obrázků, prázdné odkazy a nadpisy,
  * atribut lang, titulek a popis, canonical a hreflang (musí vést na existující stránky), vnitřní odkazy včetně
- * kotev, úplnost sitemap.xml, shodné klíče v src/texty/*.php a českou diakritiku v jiných jazykových verzích.
+ * kotev, úplnost sitemap.xml, shodné klíče v src/texty/*.php a českou diakritiku v jiných jazykových verzích,
+ * obrázek pro sdílení (og:image, og:locale, twitter:card) a stránky 404 všech jazyků (noindex, bez canonical).
  * Končí kódem 1, když něco najde. Čisté PHP bez závislostí, stejně jako generátor.
  */
 
@@ -64,6 +65,20 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(VEREJNE, F
     }
 }
 sort($stranky);
+// stránky 404: kořenová (výchozí jazyk) a jedna pro každý jazyk – vybírá je static/.htaccess
+$stranky404 = ['/404.html', ...array_map(static fn (string $j): string => "/$j/404.html", $jazyky)];
+foreach (array_diff($stranky404, $stranky) as $chybi) {
+    $nalez($chybi, 'chybí stránka 404');
+}
+$htaccess = is_file(VEREJNE . '/.htaccess') ? (string) file_get_contents(VEREJNE . '/.htaccess') : '';
+if (!str_contains($htaccess, 'ErrorDocument 404 /404.html')) {
+    $nalez('.htaccess', 'chybí ErrorDocument 404 /404.html');
+}
+foreach ($jazyky as $j) {
+    if (!str_contains($htaccess, "RewriteRule ^404\\.html$ /$j/404.html [L]")) {
+        $nalez('.htaccess', "chybí výběr stránky 404 pro /$j/");
+    }
+}
 $existuje = static function (string $adresa) use ($soubory): bool {
     $adresa = rawurldecode($adresa);
 
@@ -75,7 +90,7 @@ $idNaStrance = [];
 $html = [];
 foreach ($stranky as $s) {
     $html[$s] = $h = (string) file_get_contents(VEREJNE . $s);
-    $je404 = $s === '/404.html';
+    $je404 = in_array($s, $stranky404, true);
 
     // párování značek (bez obsahu <pre>, <script>, <style> a vloženého SVG)
     $kostra = (string) preg_replace('#<(script|style|pre|svg)\b[^>]*>.*?</\1>#s', '', $h);
@@ -128,7 +143,34 @@ foreach ($stranky as $s) {
     if (!preg_match('#<title>[^<]+</title>#', $h)) {
         $nalez($s, 'chybí <title>');
     }
+    // obrázek pro sdílení: absolutní adresa existujícího souboru, rozměry podle skutečnosti
+    if (!preg_match('#<meta property="og:image" content="([^"]+)"#', $h, $m)) {
+        $nalez($s, 'chybí og:image');
+    } elseif (!str_starts_with($m[1], $web['adresa'] . '/') || !$existuje(substr($m[1], strlen($web['adresa'])))) {
+        $nalez($s, "og:image nevede na existující soubor webu: $m[1]");
+    } else {
+        $rozmery = getimagesize(VEREJNE . substr($m[1], strlen($web['adresa'])));
+        if ($rozmery === false || !str_contains($h, '<meta property="og:image:width" content="' . $rozmery[0] . '">') || !str_contains($h, '<meta property="og:image:height" content="' . $rozmery[1] . '">')) {
+            $nalez($s, 'og:image:width / og:image:height neodpovídají obrázku');
+        }
+    }
+    foreach (['<meta property="og:image:alt" content="' => 'og:image:alt', '<meta property="og:locale" content="' . ($web['og_locale'][$ocekavany] ?? '?') . '"' => 'og:locale', '<meta name="twitter:card" content="summary_large_image"' => 'twitter:card'] as $hledam => $co) {
+        if (!str_contains($h, $hledam)) {
+            $nalez($s, "chybí nebo nesedí $co");
+        }
+    }
     if ($je404) {
+        if (!preg_match('#<meta name="robots" content="noindex"#', $h)) {
+            $nalez($s, 'stránka 404 není noindex');
+        }
+        if (preg_match('#<link rel="(canonical|alternate)"|<meta property="og:url"#', $h)) {
+            $nalez($s, 'stránka 404 nemá mít canonical, hreflang ani og:url');
+        }
+        foreach ($jazyky as $j) {
+            if (!preg_match('#<a href="/' . $j . '/" lang="' . $j . '"#', $h)) {
+                $nalez($s, "stránka 404 nevede na úvod /$j/");
+            }
+        }
         continue;
     }
     if (!preg_match('#<meta name="description" content="[^"]{20,}"#', $h)) {
@@ -188,7 +230,7 @@ foreach ($vMape as $adresa) {
     }
 }
 foreach ($stranky as $s) {
-    if ($s !== '/404.html' && !in_array(substr($s, 0, -strlen('index.html')), $vMape, true)) {
+    if (!in_array($s, $stranky404, true) && !in_array(substr($s, 0, -strlen('index.html')), $vMape, true)) {
         $nalez('sitemap.xml', "chybí $s");
     }
 }

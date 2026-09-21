@@ -10,7 +10,9 @@ return [
     'hlavni_navigace' => 'Hlavní navigace',
     'menu_tlacitko' => 'Nabídka',
     'jazyk_webu' => 'Jazyk webu',
-    'rezim' => 'Přepnout světlý a tmavý režim',
+    // tlačítko režimu: popisek říká, co právě platí; kliknutí střídá podle systému → světlý → tmavý
+    'rezim' => ['auto' => 'Režim: podle systému', 'light' => 'Režim: světlý', 'dark' => 'Režim: tmavý'],
+    'sdileni_alt' => 'phpRS – redakční systém pro magazíny, noviny a blogy',
     'paticka_veta' => 'Redakční systém pro magazíny, noviny a blogy. Svobodný software pod licencí GNU GPL v2.',
     'paticka_projekt' => 'Projekt',
     'paticka_pomoc' => 'Pomoc',

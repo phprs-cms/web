@@ -17,7 +17,7 @@ $stranka['trida'] = 'je-uvod';
 		<dl class="uvod-cisla">
 			<div><dt>0</dt><dd>závislostí a build kroků</dd></div>
 			<div><dt>4</dt><dd>kroky instalace</dd></div>
-			<div><dt>4</dt><dd>vestavěné šablony</dd></div>
+			<div><dt>3</dt><dd>vestavěné šablony</dd></div>
 			<div><dt>4</dt><dd>jazyky administrace</dd></div>
 		</dl>
 	</div>
@@ -70,10 +70,10 @@ $stranka['trida'] = 'je-uvod';
 
 <section class="pas">
 	<div class="obal">
-		<h2 class="nadpis-pasu">Čtyři šablony v balíčku</h2>
+		<h2 class="nadpis-pasu">Tři šablony v balíčku</h2>
 		<p class="pod-nadpisem">Každá má světlý i tmavý režim a přebírá logo, barvu a písma vašeho webu. Vlastní šablonu si napíšete sami – nebo s Claude přes napojení MCP.</p>
 		<div class="sablony-nahled">
-<?php foreach (['default' => 'Klasická', 'classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
+<?php foreach (['classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
 			<a href="/cs/sablony/#<?= e($slug) ?>">
 				<?= obrazek("snimky/sablona-$slug.webp", "Šablona $nazev – titulní strana", 'jen-svetly') ?>
 				<?= obrazek("snimky/sablona-$slug-tmavy.webp", "Šablona $nazev – titulní strana, tmavý režim", 'jen-tmavy') ?>

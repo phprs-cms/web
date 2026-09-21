@@ -2,6 +2,7 @@
 
 Options -Indexes
 AddDefaultCharset utf-8
+# stránka 404: výchozí je anglická; jazykovou verzi podle požadované adresy vybírá blok na konci mod_rewrite
 ErrorDocument 404 /404.html
 
 <IfModule mod_mime.c>
@@ -40,4 +41,20 @@ ErrorDocument 404 /404.html
 	RewriteCond %{HTTP:Accept-Language} ^de [NC]
 	RewriteRule ^$ /de/ [R=302,L]
 	RewriteRule ^$ /en/ [R=302,L]
+
+	# Stránka 404 v jazyce požadované adresy: /cs/… -> /cs/404.html, /de/… -> /de/404.html, /en/… -> /en/404.html.
+	# Stavový kód 404 nastavuje ErrorDocument výše – server kvůli němu interně požádá o /404.html. Teprve tenhle
+	# vnitřní požadavek se tu přepíše na jazykový soubor: mění se jen tělo odpovědi, kód 404 zůstává.
+	# Přímé „RewriteRule ^cs/ /cs/404.html“ by vracelo 200 a [R=404] cíl přepisu zahazuje, proto tudy.
+	# %{THE_REQUEST} je původní řádek požadavku („GET /cs/neco HTTP/1.1“); při přímém požadavku na /404.html
+	# v něm /cs/ není, takže se pravidla uplatní jen při obsluze chyby. Nezávisí na <If>, které LiteSpeed neumí.
+	# Když server vnitřní požadavek nepřepisuje, zůstane anglická /404.html – pořád s kódem 404.
+	# Zkouška po nasazení: curl -s -o /dev/null -w '%{http_code}\n' https://phprs.eu/cs/neexistuje   -> 404
+	#                      curl -s https://phprs.eu/cs/neexistuje | grep -o '<html lang="[a-z]*"'   -> <html lang="cs"
+	RewriteCond %{THE_REQUEST} ^[A-Z]+\s/cs/
+	RewriteRule ^404\.html$ /cs/404.html [L]
+	RewriteCond %{THE_REQUEST} ^[A-Z]+\s/de/
+	RewriteRule ^404\.html$ /de/404.html [L]
+	RewriteCond %{THE_REQUEST} ^[A-Z]+\s/en/
+	RewriteRule ^404\.html$ /en/404.html [L]
 </IfModule>

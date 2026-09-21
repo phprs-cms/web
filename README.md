@@ -26,17 +26,41 @@ Dokumentace se nepíše tady. Skript ji při sestavení převezme z repozitáře
 | `src/stranky/<jazyk>/*.php` | produktové stránky; `index.php` je úvod |
 | `src/sablony/` | kostra stránky a stránka dokumentace |
 | `src/Markdown.php` | převodník Markdownu pro příručku (jen to, co příručka používá) |
-| `assets/` | `web.css`, `web.js`, `rezim.js`, obrázky, písmo |
+| `assets/` | `web.css`, `web.js`, `rezim.js` (režim vzhledu: podle systému → světlý → tmavý, volba v `localStorage.rezim`), obrázky, písmo |
 | `static/` | soubory kopírované do kořene webu: `.htaccess`, později `aktualizace.json` |
 | `tools/nasad.sh` | nasazení na hosting |
 | `tools/snimky.sh` | snímky obrazovek z běžící instance CMS |
-| `tools/kontrola.php` | kontrola sestaveného webu: HTML, vnitřní odkazy a kotvy, hreflang, sitemap, klíče textů, čeština v en/de |
+| `tools/sdileni/` | zdroj obrázku pro sdílení (`karta.html`, `karta.css`) a skript `sestav.sh`, který ho vykreslí |
+| `tools/kontrola.php` | kontrola sestaveného webu: HTML, vnitřní odkazy a kotvy, hreflang, sitemap, klíče textů, čeština v en/de, obrázek pro sdílení, stránky 404 |
 
 Hodnota `null` v `src/web.php` znamená „zatím není“ – stránky pak nic neslibují (např. stažení ukazuje „veřejná beta se připravuje“).
 
 ## Jazyky
 
 Čeština (zdroj), angličtina a němčina. Soubory stránek se ve všech jazycích jmenují stejně (česky); adresy na webu překládá klíč `adresy` v `src/texty/<kód>.php`, adresy příručky klíč `adresy` v `osnova.json` repozitáře CMS. Každá stránka nese `hreflang` a přepínač jazyků vede na tutéž stránku. Kořen webu přesměruje `static/.htaccess` podle jazyka prohlížeče (cs/sk → čeština, de → němčina, jinak angličtina). Mění-li se český text, upravte i en a de.
+
+## Stránka 404
+
+Každý jazyk má vlastní (`/cs/404.html`, `/en/404.html`, `/de/404.html`), kořenová `/404.html` je anglická. Všechny jsou `noindex`, bez kanonické adresy a přepínač jazyků v nich vede na úvody. Kód 404 nastavuje `ErrorDocument 404 /404.html`; vnitřní požadavek na `/404.html` pak `static/.htaccess` podle původní adresy (`%{THE_REQUEST}`) přepíše na jazykový soubor – mění se jen tělo odpovědi, kód zůstává. Server, který vnitřní požadavek nepřepisuje, pošle anglickou stránku, pořád s kódem 404. Zkouška po nasazení:
+
+```
+curl -s -o /dev/null -w '%{http_code}\n' https://phprs.eu/cs/neexistuje        # 404
+curl -s https://phprs.eu/cs/neexistuje | grep -o '<html lang="[a-z]*"'          # <html lang="cs"
+curl -s https://phprs.eu/de/neexistuje | grep -o '<html lang="[a-z]*"'          # <html lang="de"
+curl -s https://phprs.eu/neexistuje | grep -o '<html lang="[a-z]*"'             # <html lang="en"
+```
+
+## Obrázek pro sdílení
+
+`assets/img/phprs-sdileni.png` (1200 × 630) je společný všem jazykům, proto má text anglicky. Stránky na něj odkazují přes `og:image` (nastavení `sdileni` v `src/web.php`, alternativní text `sdileni_alt` v textech). Zdrojem je `tools/sdileni/karta.html` a `karta.css`; logo si karta bere ze sestaveného webu a písmo z `assets/fonts/`. Po úpravě:
+
+```
+php build.php               # karta potřebuje public/assets/img/phprs-logo-tmavy.svg
+tools/sdileni/sestav.sh     # bezhlavý Chrome vykreslí kartu do assets/img/phprs-sdileni.png
+php build.php
+```
+
+Sociální sítě drží obrázek v cache podle adresy – po výrazné změně pomůže nový název souboru.
 
 ## Soubor pro aktualizace CMS
 

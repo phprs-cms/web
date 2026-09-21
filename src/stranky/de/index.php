@@ -17,7 +17,7 @@ $stranka['trida'] = 'je-uvod';
 		<dl class="uvod-cisla">
 			<div><dt>0</dt><dd>Abhängigkeiten und Build-Schritte</dd></div>
 			<div><dt>4</dt><dd>Installationsschritte</dd></div>
-			<div><dt>4</dt><dd>mitgelieferte Vorlagen</dd></div>
+			<div><dt>3</dt><dd>mitgelieferte Vorlagen</dd></div>
 			<div><dt>4</dt><dd>Sprachen der Administration</dd></div>
 		</dl>
 	</div>
@@ -70,10 +70,10 @@ $stranka['trida'] = 'je-uvod';
 
 <section class="pas">
 	<div class="obal">
-		<h2 class="nadpis-pasu">Vier Vorlagen im Paket</h2>
+		<h2 class="nadpis-pasu">Drei Vorlagen im Paket</h2>
 		<p class="pod-nadpisem">Jede hat einen hellen und einen dunklen Modus und übernimmt Logo, Farbe und Schriften Ihrer Website. Eine eigene Vorlage schreiben Sie selbst – oder mit Claude über die MCP-Anbindung.</p>
 		<div class="sablony-nahled">
-<?php foreach (['default' => 'Klassisch', 'classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
+<?php foreach (['classic-newspaper' => 'Classic Newspaper', 'modern-magazine' => 'Modern Magazine', 'minimal' => 'Minimal'] as $slug => $nazev): ?>
 			<a href="/de/vorlagen/#<?= e($slug) ?>">
 				<?= obrazek("snimky/sablona-$slug.webp", "Vorlage $nazev – Titelseite", 'jen-svetly') ?>
 				<?= obrazek("snimky/sablona-$slug-tmavy.webp", "Vorlage $nazev – Titelseite, dunkler Modus", 'jen-tmavy') ?>

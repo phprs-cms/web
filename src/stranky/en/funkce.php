@@ -19,8 +19,8 @@ $skupiny = [
         'Command palette' => 'Ctrl/⌘+K: find an article, start a new one, jump to the settings. No clicking through menus.',
         'Bulk actions and audit log' => 'Move, publish or delete several articles at once. Important changes are logged.',
     ]],
-    ['vzhled', 'Appearance', 'Four templates, a site identity and a layout that you put together directly on the page.', 'snimky/web-bloky', 'Visual block editor', [
-        'Four built-in templates' => 'The three-column Classic, Classic Newspaper, Modern Magazine and Minimal.',
+    ['vzhled', 'Appearance', 'Three templates, a site identity and a layout that you put together directly on the page.', 'snimky/web-bloky', 'Visual block editor', [
+        'Three built-in templates' => 'Classic Newspaper, Modern Magazine and Minimal.',
         'Site identity' => 'Logo, colour and fonts are set once and the templates take them over.',
         'Dark mode' => 'In all templates and in the administration. It follows the reader\'s system and can be switched.',
         'Visual block editor' => 'You drag columns and blocks on the live page – you see the same thing as the reader.',

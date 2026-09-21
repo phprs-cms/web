@@ -1,9 +1,8 @@
 <?php
 $stranka['titulek'] = 'Templates';
-$stranka['popis'] = 'The four built-in phpRS templates: the three-column Classic, Classic Newspaper, Modern Magazine and Minimal. Light and dark mode, custom templates.';
+$stranka['popis'] = 'The three built-in phpRS templates: Classic Newspaper, Modern Magazine and Minimal. Light and dark mode, custom templates.';
 
 $sablony = [
-    'default' => ['Classic', 'Three columns, blocks on the sides, articles in the middle. For sites that want many things on the front page at once: sections, polls, most read, a calendar.'],
     'classic-newspaper' => ['Classic Newspaper', 'A serious daily. Serif headlines, thin rules, a lead story and column layout in the style of the major international newspapers.'],
     'modern-magazine' => ['Modern Magazine', 'A bold online magazine. A black bar, large headlines, large photographs and a grid of cards.'],
     'minimal' => ['Minimal', 'A personal magazine, a blog or a newsletter site. One narrow column, calm typography, a list of articles with no distracting elements.'],
@@ -12,7 +11,7 @@ $sablony = [
 <section class="zahlavi">
 	<div class="obal">
 		<h1>Templates</h1>
-		<p class="perex">There are four in the package. All have a light and a dark mode, work on a phone and take over the logo, colour and fonts from the Site identity settings. Switching the template takes one click – the content stays.</p>
+		<p class="perex">There are three in the package. All have a light and a dark mode, work on a phone and take over the logo, colour and fonts from the Site identity settings. Switching the template takes one click – the content stays.</p>
 	</div>
 </section>
 <?php foreach ($sablony as $slug => [$nazev, $popis]): ?>

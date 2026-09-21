@@ -172,6 +172,9 @@ code { font: .88em var(--mono); background: var(--kod-bg); padding: .12em .38em;
 .jazyky a[aria-current] { background: var(--kod-bg); color: var(--text); }
 .rezim { display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 10px; border: 1px solid var(--linka); background: transparent; color: var(--text); cursor: pointer; }
 .rezim:hover { background: var(--plocha); }
+/* ikona říká, co platí: půlkruh = podle systému (bez data-theme), slunce = světlý, měsíc = tmavý */
+.rezim svg { display: none; }
+:root:not([data-theme]) .rezim-auto, :root[data-theme="light"] .rezim-light, :root[data-theme="dark"] .rezim-dark { display: block; }
 .menu-tl { display: none; font: 600 .95rem var(--nadpisy); padding: .55em 1em; border-radius: 10px; border: 1px solid var(--linka); background: transparent; color: var(--text); cursor: pointer; }
 
 /* 940 px: pod touto šířkou se německá nabídka s přepínačem jazyků nevejde na řádek */
@@ -238,9 +241,9 @@ code { font: .88em var(--mono); background: var(--kod-bg); padding: .12em .38em;
 .pas-tmavy .dvoji p { color: var(--na-tmave-tlumeny); }
 @media (max-width: 860px) { .dvoji, .dvoji-text { grid-template-columns: minmax(0, 1fr); } }
 
-.sablony-nahled { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
-@media (max-width: 900px) { .sablony-nahled { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 440px) { .sablony-nahled { grid-template-columns: minmax(0, 1fr); } }
+/* tři šablony: tři sloupce, na telefonu pod sebou (dva sloupce by nechaly třetí náhled osamocený) */
+.sablony-nahled { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 2.5vw, 2rem); }
+@media (max-width: 600px) { .sablony-nahled { grid-template-columns: minmax(0, 1fr); } }
 .sablony-nahled a { display: flex; flex-direction: column; gap: .7rem; text-decoration: none; color: var(--text); font: 650 1rem var(--nadpisy); }
 .sablony-nahled img { width: 100%; border: 1px solid var(--linka); border-radius: 10px; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; transition: transform .2s, box-shadow .2s; }
 .sablony-nahled a:hover img { transform: translateY(-3px); box-shadow: var(--stin); }

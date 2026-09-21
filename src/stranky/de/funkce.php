@@ -19,8 +19,8 @@ $skupiny = [
         'Befehlspalette' => 'Strg/⌘+K: Artikel finden, neuen anlegen, in die Einstellungen springen. Ohne Klicken durch Menüs.',
         'Sammelaktionen und Protokoll' => 'Mehrere Artikel auf einmal verschieben, veröffentlichen oder löschen. Wichtige Änderungen werden protokolliert.',
     ]],
-    ['vzhled', 'Aussehen', 'Vier Vorlagen, die Identität der Website und ein Layout, das Sie direkt auf der Seite zusammenstellen.', 'snimky/web-bloky', 'Visueller Block-Editor', [
-        'Vier mitgelieferte Vorlagen' => 'Klassisch mit drei Spalten, Classic Newspaper, Modern Magazine und Minimal.',
+    ['vzhled', 'Aussehen', 'Drei Vorlagen, die Identität der Website und ein Layout, das Sie direkt auf der Seite zusammenstellen.', 'snimky/web-bloky', 'Visueller Block-Editor', [
+        'Drei mitgelieferte Vorlagen' => 'Classic Newspaper, Modern Magazine und Minimal.',
         'Identität der Website' => 'Logo, Farbe und Schriften werden einmal eingestellt, die Vorlagen übernehmen sie.',
         'Dunkler Modus' => 'In allen Vorlagen und in der Administration. Richtet sich nach dem System des Lesers und lässt sich umschalten.',
         'Visueller Block-Editor' => 'Spalten und Blöcke ziehen Sie auf der Live-Seite an ihren Platz – Sie sehen dasselbe wie der Leser.',
