@@ -15,6 +15,8 @@ require __DIR__ . '/src/Markdown.php';
 
 const KOREN = __DIR__;
 const VYSTUP = KOREN . '/public';
+// BEZ_SNIMKU=1: sestavení bez pracovních snímků obrazovek (dokud nejsou finální, na veřejný web nepatří)
+define('BEZ_SNIMKU', getenv('BEZ_SNIMKU') === '1');
 
 $cms = rtrim(getenv('PHPRS_CMS') ?: KOREN . '/../phprs3', '/');
 $web = require KOREN . '/src/web.php';
@@ -78,6 +80,9 @@ function sablona(string $nazev, array $data): string
 function obrazek(string $soubor, string $alt, string $trida = '', bool $lazy = true): string
 {
     $cesta = KOREN . '/assets/img/' . $soubor;
+    if (BEZ_SNIMKU && str_starts_with($soubor, 'snimky/')) {
+        return '';
+    }
     if (!is_file($cesta)) {
         fwrite(STDERR, "Chybí obrázek assets/img/$soubor\n");
 
@@ -109,6 +114,9 @@ foreach (array_diff((array) scandir(VYSTUP), ['.', '..']) as $polozka) {
     smaz(VYSTUP . '/' . $polozka);
 }
 kopiruj(KOREN . '/assets', VYSTUP . '/assets');
+if (BEZ_SNIMKU) {
+    smaz(VYSTUP . '/assets/img/snimky');
+}
 kopiruj(KOREN . '/static', VYSTUP);
 if (!is_dir(VYSTUP . '/assets/img')) {
     mkdir(VYSTUP . '/assets/img', 0775, true);

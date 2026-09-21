@@ -11,7 +11,8 @@ set -eu
 cd "$(dirname "$0")/.."
 
 [ -z "$(git status --porcelain)" ] || { echo "Pracovní strom není čistý – nejdřív commitněte změny."; exit 1; }
-php build.php
+# snímky obrazovek jdou ven, jen když jsou v repozitáři (tedy finální); pracovní z .gitignore ne
+if git ls-files --error-unmatch assets/img/snimky >/dev/null 2>&1; then php build.php; else BEZ_SNIMKU=1 php build.php; fi
 [ -f static/aktualizace.json ] || echo "Pozn.: static/aktualizace.json zatím neexistuje – adresa aktualizací bude vracet 404 (CMS s tím počítá)."
 
 ZDROJ=$(git rev-parse --short HEAD)
@@ -26,6 +27,7 @@ fi
 git -C "$PRACE" rm -rq --ignore-unmatch . >/dev/null 2>&1 || true
 find "$PRACE" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
 cp -R public/. "$PRACE"/
+rm -f "$PRACE/.gitkeep" "$PRACE/assets/fonts/.gitkeep"
 git -C "$PRACE" add -A
 if git -C "$PRACE" diff --cached --quiet; then
 	echo "Žádná změna k nasazení."
