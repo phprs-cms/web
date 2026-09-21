@@ -57,7 +57,7 @@ Subdomény jsou na Blueboardu sourozenecké složky vedle `www` (`demo` = demo.p
 ## Zásady
 
 - Žádné cookies, analytika, cizí skripty ani písma; přísná CSP v `static/.htaccess`.
-- Písmo Plus Jakarta Sans se hostuje u sebe: `assets/fonts/PlusJakartaSans-Variable.woff2` (licence OFL). Dokud soubor chybí, použije se systémové písmo.
+- Písmo **Noto Sans** (licence OFL) pro nadpisy i text, hostované u sebe: `assets/fonts/noto-sans-latin-wght-normal.woff2` a `noto-sans-latin-ext-wght-normal.woff2`. Dokud soubory chybí, použije se systémové písmo. Logo má písmo v křivkách a na Noto Sans nezávisí.
 - Texty: věcně, krátké věty, vykání. Tvrzení o funkcích se ověřují proti repozitáři CMS.
 
 Licence obsahu a kódu webu: GNU GPL v2, shodně s phpRS.
