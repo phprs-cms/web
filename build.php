@@ -79,10 +79,14 @@ function sablona(string $nazev, array $data): string
 /** Obrázek ze složky assets/img s rozměry (kvůli poskakování stránky); chybějící soubor sestavení nezastaví. */
 function obrazek(string $soubor, string $alt, string $trida = '', bool $lazy = true): string
 {
-    $cesta = KOREN . '/assets/img/' . $soubor;
-    if (BEZ_SNIMKU && str_starts_with($soubor, 'snimky/')) {
-        return '';
+    // snímky obrazovek má každá jazyková verze vlastní (snimky/<jazyk>/…); cizí jazyk se nikdy nepoužije
+    if (str_starts_with($soubor, 'snimky/')) {
+        if (BEZ_SNIMKU) {
+            return '';
+        }
+        $soubor = 'snimky/' . $GLOBALS['jazykStranky'] . substr($soubor, 6);
     }
+    $cesta = KOREN . '/assets/img/' . $soubor;
     if (!is_file($cesta)) {
         fwrite(STDERR, "Chybí obrázek assets/img/$soubor\n");
 
@@ -156,6 +160,7 @@ $adresaPrirucky = static function (string $jazyk, string $cesta) use ($texty, $o
 
 foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
     $t = $texty[$jazyk];
+    $GLOBALS['jazykStranky'] = $jazyk;
     $spolecne = ['web' => $web, 't' => $t, 'jazyk' => $jazyk, 'otisk' => $otisk, 'logo' => $logo];
 
     // produktové stránky: src/stranky/<jazyk>/<adresa>.php, index.php = úvod

@@ -52,7 +52,7 @@ Subdomény jsou na Blueboardu sourozenecké složky vedle `www` (`demo` = demo.p
 
 ## Snímky obrazovek
 
-`assets/img/snimky/` – pořizují se z běžící instance CMS skriptem `tools/snimky.sh` (bezhlavý Chrome, světlý i tmavý režim). Ukázkový magazín „Pražský kurýr“ je smyšlený: jména autorů jsou vymyšlená a obrázky článků jsou vlastní ilustrace vytvořené pro tento projekt, takže snímky nenesou žádná cizí práva. Chybějící snímek sestavení nezastaví – stránka se vykreslí bez něj. Zatím chybí snímek vizuálního editoru bloků (`web-bloky`).
+`assets/img/snimky/<jazyk>/` – **každá jazyková verze má vlastní snímky** (administrace v daném jazyce, ukázkový magazín s obsahem v daném jazyce); snímek jiného jazyka se nikdy nepoužije, chybějící se vynechá. Pořizují se z běžící instance CMS skriptem `tools/snimky.sh` (bezhlavý Chrome, světlý i tmavý režim). Ukázkový magazín „Pražský kurýr“ je smyšlený: jména autorů jsou vymyšlená a obrázky článků jsou vlastní ilustrace vytvořené pro tento projekt, takže snímky nenesou žádná cizí práva. Chybějící snímek sestavení nezastaví – stránka se vykreslí bez něj. V en a de zatím chybí snímek Stavu systému (jeho řádky nejsou v CMS přeložené).
 
 ## Zásady
 
