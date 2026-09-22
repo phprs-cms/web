@@ -253,7 +253,21 @@ foreach ($web['jazyky'] as $jazyk => $nazevJazyka) {
             fwrite(STDERR, "Příručka ($jazyk): chybí $cesta.md\n");
             continue;
         }
-        $md = new Markdown(static fn (string $cil): string => $odkaz($cil, $cesta));
+        // snímky příručky: docs/prirucka/<jazyk>/obrazky/*.webp – každý jazyk má vlastní, cizí se nikdy nepoužije
+        $snimek = static function (string $cil, string $alt) use ($koren, $jazyk): string {
+            $nazev = basename($cil);
+            $zdroj = "$koren/obrazky/$nazev";
+            $rozmery = !BEZ_SNIMKU && preg_match('/^[a-z0-9-]+\.(webp|png|jpg)$/', $nazev) && is_file($zdroj) ? getimagesize($zdroj) : false;
+            if ($rozmery === false) {
+                BEZ_SNIMKU || fwrite(STDERR, "Příručka ($jazyk): chybí snímek obrazky/$nazev\n");
+
+                return '';
+            }
+            kopiruj($zdroj, "assets/img/prirucka/$jazyk/$nazev");
+
+            return '<img src="/assets/img/prirucka/' . $jazyk . '/' . e($nazev) . '" alt="' . e($alt) . '" width="' . (int) $rozmery[0] . '" height="' . (int) $rozmery[1] . '" loading="lazy" decoding="async">';
+        };
+        $md = new Markdown(static fn (string $cil): string => $odkaz($cil, $cesta), $snimek);
         $html = $md->preved((string) file_get_contents("$koren/$cesta.md"));
         $stranky[$cesta] = ['titulek' => $md->titulek, 'html' => $html, 'nadpisy' => $md->nadpisy, 'url' => $adresaPrirucky($jazyk, $cesta), 'oddily' => $md->oddily];
     }

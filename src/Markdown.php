@@ -3,8 +3,8 @@
  * Malý převodník Markdownu pro příručku phpRS.
  *
  * Umí jen to, co příručka používá: nadpisy, odstavce, seznamy (i vnořené a s bloky uvnitř položky),
- * tabulky (zarovnání sloupců, svislítko v buňce jako \|), citace (vykreslené jako poznámka), bloky kódu
- * a řádkové formátování. Žádné HTML ve zdroji – všechno se escapuje.
+ * tabulky (zarovnání sloupců, svislítko v buňce jako \|), citace (vykreslené jako poznámka), bloky kódu,
+ * snímek obrazovky na samostatném řádku (![popisek](../obrazky/nazev.webp)) a řádkové formátování. Žádné HTML ve zdroji – všechno se escapuje.
  */
 
 declare(strict_types=1);
@@ -22,8 +22,11 @@ final class Markdown
     /** @var array<string,true> id nadpisů, která už stránka obsahuje */
     private array $pouzitaId = [];
 
-    /** @param \Closure(string):string $odkaz přepis cílů odkazů (relativní .md -> adresa na webu) */
-    public function __construct(private readonly \Closure $odkaz)
+    /**
+     * @param \Closure(string):string $odkaz přepis cílů odkazů (relativní .md -> adresa na webu)
+     * @param (\Closure(string, string):string)|null $obrazek hotová značka <img> pro snímek (cesta ze zdroje, popisek); '' = snímek chybí
+     */
+    public function __construct(private readonly \Closure $odkaz, private readonly ?\Closure $obrazek = null)
     {
     }
 
@@ -158,9 +161,18 @@ final class Markdown
                 $html .= $cislovany ? "</ol>\n" : "</ul>\n";
                 continue;
             }
+            // snímek obrazovky: samostatný řádek ![popisek](cesta); popisek je zároveň alt i titulek pod obrázkem
+            if (preg_match('/^!\[([^\]]*)\]\(([^()\s]+)\)\s*$/', $radek, $m)) {
+                $i++;
+                $img = $this->obrazek !== null ? ($this->obrazek)($m[2], $m[1]) : '';
+                if ($img !== '') {
+                    $html .= '<figure class="snimek">' . $img . ($m[1] !== '' ? '<figcaption>' . $this->radkove($m[1]) . '</figcaption>' : '') . "</figure>\n";
+                }
+                continue;
+            }
             // odstavec
             $odstavec = [];
-            for (; $i < $n && trim($radky[$i]) !== '' && !preg_match('/^(#{1,6}\s|```|>|([-*]|\d+\.)\s+|\s*\|)/', $radky[$i]); $i++) {
+            for (; $i < $n && trim($radky[$i]) !== '' && !preg_match('/^(#{1,6}\s|```|>|!\[|([-*]|\d+\.)\s+|\s*\|)/', $radky[$i]); $i++) {
                 $odstavec[] = trim($radky[$i]);
             }
             if ($odstavec === []) {

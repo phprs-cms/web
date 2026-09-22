@@ -14,7 +14,11 @@ $stranka['popis'] = 'Download von phpRS, Anforderungen an das Hosting und Instal
 			<p class="vydani-verze">phpRS <strong><?= e($web['verze']) ?></strong></p>
 <?php if ($web['stahnout_url'] !== null): ?>
 			<p><a class="tl" href="<?= e($web['stahnout_url']) ?>">ZIP herunterladen</a></p>
+<?php if (str_contains($web['verze'], '-')): // předběžná verze (beta, rc) ?>
 			<p class="drobne">Dies ist eine <strong>Beta</strong>: Das System ist fertig und getestet, sammelt aber erst Erfahrungen aus dem Produktivbetrieb. Legen Sie Backups an und melden Sie Fehler bitte auf <a href="https://github.com/phprs-cms/cms/issues" rel="noopener">GitHub</a>. <a href="https://github.com/phprs-cms/cms/releases" rel="noopener">Alle Versionen und Änderungen</a></p>
+<?php else: ?>
+			<p class="drobne">Eine stabile Version mit Sicherheitsupdates, die sich selbst installieren. Fehler melden Sie bitte auf <a href="https://github.com/phprs-cms/cms/issues" rel="noopener">GitHub</a>. <a href="https://github.com/phprs-cms/cms/releases" rel="noopener">Alle Versionen und Änderungen</a></p>
+<?php endif ?>
 			<p class="drobne">Das Paket ist signiert. SHA-256-Prüfsumme und Signatur finden Sie bei der Version; die Administration prüft beides bei einer Aktualisierung selbst.</p>
 <?php else: ?>
 			<p><strong>Die öffentliche Beta ist in Vorbereitung.</strong> Das System läuft derzeit im Testbetrieb. Der Download erscheint hier, sobald wir es auf einem produktiven Hosting geprüft haben.</p>

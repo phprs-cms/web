@@ -14,7 +14,11 @@ $stranka['popis'] = 'Stažení phpRS, požadavky na hosting a instalace ve čty�
 			<p class="vydani-verze">phpRS <strong><?= e($web['verze']) ?></strong></p>
 <?php if ($web['stahnout_url'] !== null): ?>
 			<p><a class="tl" href="<?= e($web['stahnout_url']) ?>">Stáhnout ZIP</a></p>
+<?php if (str_contains($web['verze'], '-')): // předběžná verze (beta, rc) ?>
 			<p class="drobne">Jde o <strong>betu</strong>: systém je hotový a testovaný, ale teprve sbírá zkušenosti z ostrého provozu. Zálohujte a chyby prosím hlaste na <a href="https://github.com/phprs-cms/cms/issues" rel="noopener">GitHubu</a>. <a href="https://github.com/phprs-cms/cms/releases" rel="noopener">Všechna vydání a seznam změn</a></p>
+<?php else: ?>
+			<p class="drobne">Stabilní vydání s bezpečnostními opravami, které se instalují samy. Chyby prosím hlaste na <a href="https://github.com/phprs-cms/cms/issues" rel="noopener">GitHubu</a>. <a href="https://github.com/phprs-cms/cms/releases" rel="noopener">Všechna vydání a seznam změn</a></p>
+<?php endif ?>
 			<p class="drobne">Balíček je podepsaný. Otisk SHA-256 a podpis najdete u vydání; administrace je při aktualizaci ověřuje sama.</p>
 <?php else: ?>
 			<p><strong>Veřejná beta se připravuje.</strong> Systém teď běží ve zkušebním provozu; ke stažení bude tady, jakmile ho prověříme na ostrém hostingu.</p>

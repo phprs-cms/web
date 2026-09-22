@@ -14,7 +14,11 @@ $stranka['popis'] = 'Downloading phpRS, hosting requirements and installation in
 			<p class="vydani-verze">phpRS <strong><?= e($web['verze']) ?></strong></p>
 <?php if ($web['stahnout_url'] !== null): ?>
 			<p><a class="tl" href="<?= e($web['stahnout_url']) ?>">Download ZIP</a></p>
+<?php if (str_contains($web['verze'], '-')): // předběžná verze (beta, rc) ?>
 			<p class="drobne">This is a <strong>beta</strong>: the system is complete and tested, but is only now gathering experience from production use. Keep backups and please report bugs on <a href="https://github.com/phprs-cms/cms/issues" rel="noopener">GitHub</a>. <a href="https://github.com/phprs-cms/cms/releases" rel="noopener">All releases and the change log</a></p>
+<?php else: ?>
+			<p class="drobne">A stable release, supported with security fixes that install themselves. Please report bugs on <a href="https://github.com/phprs-cms/cms/issues" rel="noopener">GitHub</a>. <a href="https://github.com/phprs-cms/cms/releases" rel="noopener">All releases and the change log</a></p>
+<?php endif ?>
 			<p class="drobne">The package is signed. The SHA-256 checksum and the signature are listed with the release; the administration verifies them by itself during an update.</p>
 <?php else: ?>
 			<p><strong>The public beta is being prepared.</strong> The system is now running in a trial operation; it will be available for download here once we have tested it on production hosting.</p>

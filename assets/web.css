@@ -321,6 +321,10 @@ code { font: .88em var(--mono); background: var(--kod-bg); padding: .12em .38em;
 .proza pre code { background: none; padding: 0; font: inherit; overflow-wrap: normal; }
 .poznamka { border: 1px solid var(--linka); border-left: 3px solid var(--znacka); background: var(--plocha); padding: 1rem 1.2rem; border-radius: 0 10px 10px 0; }
 .poznamka > * + * { margin-top: .6rem; }
+/* snímek obrazovky v příručce: rámeček jako okno, popisek pod ním */
+.snimek { margin: 1.6rem 0; }
+.snimek img { display: block; width: 100%; height: auto; border: 1px solid var(--linka); border-radius: 12px; box-shadow: var(--stin); background: var(--plocha); }
+.snimek figcaption { margin-top: .55rem; color: var(--tlumeny); font-size: .88rem; line-height: 1.45; text-align: center; }
 
 /* --- dokumentace --------------------------------------------------------------------------------------------------- */
 
