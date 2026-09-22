@@ -1,16 +1,18 @@
 {
-    "verze": "3.0.0-rc.1",
-    "vydano": "2026-09-21",
-    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0-rc.1/phprs-3.0.0-rc.1.zip",
-    "sha256": "545d0c8827ea0eab6fbd62e0e0b3379db5c6551c3ff269e58917d0c3b046bafc",
-    "podpis": "Vu99IY3EMU0kV4PYVTtzHFztunj1WNludvA/ccmLdvvtyh5pYh7y4OOCnO31xfRyLsLgmwiqfpTwCtImEjuCDg==",
+    "verze": "3.0.0",
+    "vydano": "2026-09-22",
+    "url": "https://github.com/phprs-cms/cms/releases/download/v3.0.0/phprs-3.0.0.zip",
+    "sha256": "353fee59f04f226383302b0778487301e7afcb540f61f5638b580ac0602c80e2",
+    "podpis": "60kh/GrIT6RH2D+2McAHCoKPTT1LqkD1WqjJA2l1HMOq9lt1s5J3klXqpV8AtNU1NunBuB0c7rldKB082zzvCQ==",
     "klic": "d1943e4d",
     "min_php": "8.4",
     "bezpecnostni": false,
     "zmeny": [
-        "Předplatné přes Stripe: čtenář zaplatí na stránce Stripe, web předplatné sám zapne a prodlužuje, zrušení a změna karty v portálu Stripe",
-        "Nastavení → Čtenáři a platby: vlastní záložka pro registrace, zamčený obsah a platby",
-        "Nápověda k obrazovce: tlačítko u nadpisu nabídne související stránky příručky",
-        "Kandidát na ostrou verzi 3.0.0"
+        "Ostrá verze phpRS 3.0.0",
+        "Příručka se snímky obrazovek v češtině, angličtině a němčině",
+        "Výpis článků: filtr podle jazykové verze",
+        "Dialog Médií v editoru: hledání podle názvu, popisku a jména souboru",
+        "Čísla a velikosti souborů ve formátu jazyka administrace",
+        "Kódy reklamních sítí čekají na souhlas s marketingovými cookies"
     ]
 }
